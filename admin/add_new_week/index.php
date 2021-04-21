@@ -1,3 +1,7 @@
+<?php 
+  require_once $_SERVER['DOCUMENT_ROOT'].'/button_back.php'; 
+?>
+
 <div id = 'main-text'>
 <h1>Добавление расписания</h1>
 </div>
@@ -11,12 +15,6 @@
     </p>
 </form> <!-- брать группы из БД -->
   <datalist id="GroupList"> 
-    <!-- 
-    <option value="ИСПк-301-52-00">
-    <option value="ИСПк-202-52-00">
-    <option value="ИСПк-101-52-00">
-    -->
-
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'].'/connection.php'; // подключаем скрипт
     
@@ -32,9 +30,6 @@
         while ($row = mysqli_fetch_array($result)) {
           echo '<option value="'.$row['Name'].'">';
         }
-    }
-    else {
-      echo 'проблема';
     }
     // закрываем подключение
     mysqli_close($link);
