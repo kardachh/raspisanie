@@ -1,9 +1,10 @@
 <?php 
-  require_once $_SERVER['DOCUMENT_ROOT'].'/button_back.php'; 
+  
 ?>
 <style>
   <?php include '../../style.css'; ?>
 </style>
+<?php echo $_SERVER['DOCUMENT_ROOT'].'/api/date.php'?>
 <div id = 'main-text'>
 <h1>Добавление расписания</h1>
 </div>
@@ -45,7 +46,7 @@
 </div>
 
 <div id = 'table-space'>
-  <!-- <table>
+  <table>
   <tr><td class="full">Имя группы</td></tr>
   <tr><td class="full">day_of_week1</td></tr>
   <tr>
@@ -359,7 +360,7 @@
     <td>teacher</td>
     <td>classroom</td>
   </tr>
-</table> -->
+</table>
 </div>
 
 
@@ -375,9 +376,10 @@
     
     function tableCreate(){
       let body = document.getElementById('table-space'),
-          tbl  = document.createElement('table');
-      for (let i = 1; i < 7; i++){
-        console.log(dayCreate(i));
+        tbl  = document.createElement('table');
+        tbl.appendChild(nameCreate());
+        
+        for (let i = 1; i < 7; i++){
         tbl.appendChild(dayCreate(i));
       }
       // for(let i = 0; i < 3; i++){
@@ -397,11 +399,33 @@
       body.appendChild(tbl);
     }
 
+    function nameCreate(){
+      let name = document.createElement('tr');
+      let trname = document.createElement('td');
+      trname.setAttribute('colspan',5);
+      trname.innerHTML = 'name_of_group';
+      name.appendChild(trname)
+      return name;
+    }
+
     function dayCreate(number){
+
       let day = document.createElement('tr');
       let trday = document.createElement('td');
-      trday.setAttribute('colspan', 0);
-      trday.innerHTML = 'day_of_week'+number;
+      trday.setAttribute('colspan', 5);
+      $.ajax({
+        type: "post",
+        url: "../../api/date.php",
+        data: 'number=' + number,
+        dataType: 'text',
+        success: function (response) {
+          console.log(response);
+          trday.innerHTML = response;
+        },
+        error:function(responce){
+          trday.innerHTML = 'Error'
+        }
+      });
       day.appendChild(trday);
       return day;
     }

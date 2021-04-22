@@ -1,6 +1,8 @@
 table{
     border: #000 solid 1px;
     padding: 5px;
+    display: inline-block;
+    vertical-align: top;
 }
 td{
     border: #000 solid 1px;
