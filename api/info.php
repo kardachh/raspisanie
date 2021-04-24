@@ -1,11 +1,11 @@
 <?php
-    $sql_saint = 'SELECT Week.Week,Groups.Name,Day_Of_Week.Name,Classes_Time.Time,Classes.Name,Class_Type.Name 
-    FROM List_Of_Classes,Groups,Week,Day_Of_Week,Classes_Time,Classrooms,Classes,Class_Type 
-    WHERE List_Of_Classes.ID_Day_Of_Week=Day_Of_Week.ID 
-        AND Classes_Time.ID = List_Of_Classes.ID_Classes_Time 
-        AND List_Of_Classes.ID_Type = Class_Type.ID 
-        and List_Of_Classes.ID_Group = Groups.ID 
-        AND List_Of_Classes.ID_Classroom = Classrooms.Number';
+    // $sql_saint = 'SELECT Week.Week,Groups.Name,Day_Of_Week.Name,Classes_Time.Time,Classes.Name,Class_Type.Name 
+    // FROM List_Of_Classes,Groups,Week,Day_Of_Week,Classes_Time,Classrooms,Classes,Class_Type 
+    // WHERE List_Of_Classes.ID_Day_Of_Week=Day_Of_Week.ID 
+    //     AND Classes_Time.ID = List_Of_Classes.ID_Classes_Time 
+    //     AND List_Of_Classes.ID_Type = Class_Type.ID 
+    //     and List_Of_Classes.ID_Group = Groups.ID 
+    //     AND List_Of_Classes.ID_Classroom = Classrooms.Number';
 
     require_once $_SERVER['DOCUMENT_ROOT'].'/connection.php'; // подключаем скрипт
     $time = $_POST['number_class'];
