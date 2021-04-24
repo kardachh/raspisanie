@@ -4,22 +4,21 @@
 <style>
   <?php include '../../style.css'; ?>
 </style>
-<?php echo $_SERVER['DOCUMENT_ROOT'].'/api/date.php'?>
 <div id = 'main-text'>
 <h1>Добавление расписания</h1>
 </div>
 <div id = main-cont>
-<form method='post' action='#'>
-    <p><input 
+<form method='post'>
+    <p><input
+      id = "name_of_group"
       list="GroupList"
       type="text" 
-      name="model" 
       placeholder="Выберите группу" 
       required/>
     </p>
     <!-- week выводится в формате "2021-W15" -->
     <input id = 'week-select' type="week" placeholder="Выберите неделю" required> 
-    <input id = 'add-btn' type='submit' value="Добавить">
+    <input id = 'add-btn' type='button' value="Добавить">
 </form> <!-- загрузка групп из БД -->
 <datalist id="GroupList">
 
@@ -45,8 +44,7 @@
 </datalist>
 </div>
 
-<div id = 'table-space'>
-  <table>
+<div id = 'table-space'><table id = "table-one">
   <tr><td class="full">Имя группы</td></tr>
   <tr><td class="full">day_of_week1</td></tr>
   <tr>
@@ -368,58 +366,83 @@
 <script src = '../../jquery.js'></script>
 <!-- <script src = 'script_add_rasp.js'></script> -->
 <script>
-  $(document).ready(function () {
-    $('#add-btn').click(function () {
-      let week = new Date(document.getElementById('week-select').valueAsDate);
-      console.log(week);
-    });
-    
+  $(document).ready(function () {    
     function tableCreate(){
       let body = document.getElementById('table-space'),
         tbl  = document.createElement('table');
         tbl.appendChild(nameCreate());
         
         for (let i = 1; i < 7; i++){
-        tbl.appendChild(dayCreate(i));
+          tbl.appendChild(dayCreate(i));
+          for (let j = 1; j < 7; j++){
+            tbl.appendChild(classCreate(i,j));
+          }
       }
-      // for(let i = 0; i < 3; i++){
-      //   let tr = tbl.insertRow();
-      //     for(let j = 0; j < 2; j++){
-      //         if(i == 2 && j == 1){
-      //             break;
-      //         } else {
-      //           let td = tr.insertCell();
-      //             td.appendChild(document.createTextNode('Cell'));
-      //             if(i == 1 && j == 1){
-      //                 td.setAttribute('rowSpan', '2');
-      //             }
-      //         }
-      //     }
-      // }
+      
       body.appendChild(tbl);
+    }
+
+    function classCreate(number_day,number_class) {
+      let _class = document.createElement('tr'); // пара
+      let time = document.createElement('td'); // время
+      let name = document.createElement('td'); // название пары
+      let type = document.createElement('td'); // тип
+      let teacher = document.createElement('td'); // препод
+      let classroom = document.createElement('td'); // кабинет
+      let url = '../../api/info.php';
+      // time.innerHTML = 'time'+number_class;
+      // name.innerHTML = 'name'+number_class;
+      // type.innerHTML = 'type'+number_class;
+      // teacher.innerHTML = 'teacher'+number_class;
+      // classroom.innerHTML = 'classroom'+number_class;
+
+      $.ajax({
+        type: "post",
+        url: url,
+        data: {number_day:number_day,number_class:number_class},
+        dataType: "json",
+        success: function (response) {
+          console.log('info success');
+          console.log(response.err);
+          // time.innerHTML = 'time'+response;
+          // name.innerHTML = 'name'+response;
+          // type.innerHTML = 'type'+response;
+          // teacher.innerHTML = 'teacher'+response;
+          // classroom.innerHTML = 'classroom'+response;
+        },
+        error: function(response){
+          console.log('info err');
+          console.log(response);
+        }
+      });
+
+      _class.appendChild(time);
+      _class.appendChild(name);
+      _class.appendChild(type);
+      _class.appendChild(teacher);
+      _class.appendChild(classroom);
+      return _class
     }
 
     function nameCreate(){
       let name = document.createElement('tr');
       let trname = document.createElement('td');
       trname.setAttribute('colspan',5);
-      trname.innerHTML = 'name_of_group';
+      trname.innerHTML = $('#name_of_group').val();
       name.appendChild(trname)
       return name;
     }
 
     function dayCreate(number){
-
       let day = document.createElement('tr');
       let trday = document.createElement('td');
       trday.setAttribute('colspan', 5);
-      $.ajax({
+      $.ajax({ // получение дня недели 
         type: "post",
         url: "../../api/date.php",
         data: 'number=' + number,
         dataType: 'text',
         success: function (response) {
-          console.log(response);
           trday.innerHTML = response;
         },
         error:function(responce){
@@ -430,6 +453,11 @@
       return day;
     }
 
-    tableCreate();
+    $('#add-btn').click(function () {
+      let week = new Date(document.getElementById('week-select').valueAsDate);
+      if ($('#name_of_group').val()!=""){
+        tableCreate();
+      }
+    });
 });
 </script>

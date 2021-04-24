@@ -3,6 +3,7 @@ table{
     padding: 5px;
     display: inline-block;
     vertical-align: top;
+    text-align: center;
 }
 td{
     border: #000 solid 1px;
