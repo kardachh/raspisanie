@@ -44,324 +44,7 @@
 </datalist>
 </div>
 
-<div id = 'table-space'><table id = "table-one">
-  <tr><td class="full">Имя группы</td></tr>
-  <tr><td class="full">day_of_week1</td></tr>
-  <tr>
-    <td>time1</td>
-    <td>name_of_class1</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time2</td>
-    <td>name_of_class2</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-
-  </tr>
-  <tr>
-    <td>time3</td>
-    <td>name_of_class3</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-
-  </tr>
-  <tr>
-    <td>time4</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time5</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time6</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time7</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr><td class="full">day_of_week2</td></tr>
-  <tr>
-    <td>time1</td>
-    <td>name_of_class1</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time2</td>
-    <td>name_of_class2</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-
-  </tr>
-  <tr>
-    <td>time3</td>
-    <td>name_of_class3</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-
-  </tr>
-  <tr>
-    <td>time4</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time5</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time6</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time7</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr><td class="full">day_of_week3</td></tr>
-  <tr>
-    <td>time1</td>
-    <td>name_of_class1</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time2</td>
-    <td>name_of_class2</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-
-  </tr>
-  <tr>
-    <td>time3</td>
-    <td>name_of_class3</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-
-  </tr>
-  <tr>
-    <td>time4</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time5</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time6</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time7</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr><td class="full">day_of_week4</td></tr>
-  <tr>
-    <td>time1</td>
-    <td>name_of_class1</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time2</td>
-    <td>name_of_class2</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-
-  </tr>
-  <tr>
-    <td>time3</td>
-    <td>name_of_class3</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-
-  </tr>
-  <tr>
-    <td>time4</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time5</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time6</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time7</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr><td class="full">day_of_week5</td></tr>
-  <tr>
-    <td>time1</td>
-    <td>name_of_class1</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time2</td>
-    <td>name_of_class2</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-
-  </tr>
-  <tr>
-    <td>time3</td>
-    <td>name_of_class3</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-
-  </tr>
-  <tr>
-    <td>time4</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time5</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time6</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time7</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr><td class="full">day_of_week6</td></tr>
-  <tr>
-    <td>time1</td>
-    <td>name_of_class1</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time2</td>
-    <td>name_of_class2</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-
-  </tr>
-  <tr>
-    <td>time3</td>
-    <td>name_of_class3</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-
-  </tr>
-  <tr>
-    <td>time4</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time5</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time6</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-  <tr>
-    <td>time7</td>
-    <td>name_of_class4</td>
-    <td>type</td>
-    <td>teacher</td>
-    <td>classroom</td>
-  </tr>
-</table>
-</div>
-
-
+<div id = 'table-space'></div>
 
 <script src = '../../jquery.js'></script>
 <!-- <script src = 'script_add_rasp.js'></script> -->
@@ -374,7 +57,7 @@
         
         for (let i = 1; i < 7; i++){
           tbl.appendChild(dayCreate(i));
-          for (let j = 1; j < 7; j++){
+          for (let j = 1; j < 8; j++){
             tbl.appendChild(classCreate(i,j));
           }
       }
@@ -399,16 +82,18 @@
       $.ajax({
         type: "post",
         url: url,
-        data: {number_day:number_day,number_class:number_class},
+        data: {
+          week: $('#week-select').val(),
+          group:$('#name_of_group').val(),
+          number_day:number_day,
+          number_class:number_class},
         dataType: "json",
         success: function (response) {
-          console.log('info success');
-          console.log(response.err);
-          // time.innerHTML = 'time'+response;
-          // name.innerHTML = 'name'+response;
-          // type.innerHTML = 'type'+response;
-          // teacher.innerHTML = 'teacher'+response;
-          // classroom.innerHTML = 'classroom'+response;
+          time.innerHTML = response.time;
+          name.innerHTML = 'name'+response;
+          type.innerHTML = 'type'+response;
+          teacher.innerHTML = 'teacher'+response;
+          classroom.innerHTML = 'classroom'+response;
         },
         error: function(response){
           console.log('info err');
@@ -455,7 +140,7 @@
 
     $('#add-btn').click(function () {
       let week = new Date(document.getElementById('week-select').valueAsDate);
-      if ($('#name_of_group').val()!=""){
+      if ($('#name_of_group').val()!="" && $('#week-select').val()!=""){
         tableCreate();
       }
     });
