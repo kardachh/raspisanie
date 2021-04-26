@@ -15,6 +15,7 @@
       type="text" 
       placeholder="Выберите группу" 
       required/>
+      <button type='reset'>Reset</button>
     </p>
     <!-- week выводится в формате "2021-W15" -->
     <input id = 'week-select' type="week" placeholder="Выберите неделю" required> 
@@ -90,14 +91,13 @@
         dataType: "json",
         success: function (response) {
           time.innerHTML = response.time;
-          name.innerHTML = 'name'+response;
-          type.innerHTML = 'type'+response;
-          teacher.innerHTML = 'teacher'+response;
+          name.innerHTML = response.name;
+          type.innerHTML = response.type;
+          teacher.innerHTML = response;
           classroom.innerHTML = 'classroom'+response;
         },
         error: function(response){
-          console.log('info err');
-          console.log(response);
+          console.log(response.responseText);
         }
       });
 

@@ -7,6 +7,7 @@ table{
 }
 td{
     border: #000 solid 1px;
+    min-width: 120px;
 }
 tr{
     border: #000 dashed 2px;
