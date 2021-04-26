@@ -8,8 +8,12 @@ table{
 td{
     border: #000 solid 1px;
     min-width: 120px;
+    padding: 0px 10px;
 }
 tr{
     border: #000 dashed 2px;
 }
 
+#name_of_group{
+    width: 250px;
+}

@@ -90,11 +90,12 @@
           number_class:number_class},
         dataType: "json",
         success: function (response) {
+          console.log(response);
           time.innerHTML = response.time;
           name.innerHTML = response.name;
           type.innerHTML = response.type;
-          teacher.innerHTML = response;
-          classroom.innerHTML = 'classroom'+response;
+          teacher.innerHTML = response.teacher;
+          classroom.innerHTML = response.classroom;
         },
         error: function(response){
           console.log(response.responseText);

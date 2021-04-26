@@ -1,11 +1,11 @@
 <?php 
-  
+  require_once '../button_back.php';
 ?>
 <style>
-  <?php include '../../style.css'; ?>
+  <?php include '../style.css'; ?>
 </style>
 <div id = 'main-text'>
-<h1>Добавление расписания</h1>
+<h1>Расписание</h1>
 </div>
 <div id = main-cont>
 <form method='post'>
@@ -15,6 +15,7 @@
       type="text" 
       placeholder="Выберите группу" 
       required/>
+      <button type='reset'>Reset</button>
     </p>
     <!-- week выводится в формате "2021-W15" -->
     <input id = 'week-select' type="week" placeholder="Выберите неделю" required> 
@@ -51,9 +52,11 @@
 <script>
   $(document).ready(function () {    
     function tableCreate(){
+      $('table').remove();
       let body = document.getElementById('table-space'),
         tbl  = document.createElement('table');
         tbl.appendChild(nameCreate());
+        tbl.appendChild(descriptionCreate());
         
         for (let i = 1; i < 7; i++){
           tbl.appendChild(dayCreate(i));
@@ -90,14 +93,13 @@
         dataType: "json",
         success: function (response) {
           time.innerHTML = response.time;
-          name.innerHTML = 'name'+response;
-          type.innerHTML = 'type'+response;
-          teacher.innerHTML = 'teacher'+response;
-          classroom.innerHTML = 'classroom'+response;
+          name.innerHTML = response.name;
+          type.innerHTML = response.type;
+          teacher.innerHTML = response.teacher;
+          classroom.innerHTML = response.classroom;
         },
         error: function(response){
-          console.log('info err');
-          console.log(response);
+          console.log(response.responseText);
         }
       });
 
@@ -110,12 +112,35 @@
     }
 
     function nameCreate(){
-      let name = document.createElement('tr');
-      let trname = document.createElement('td');
-      trname.setAttribute('colspan',5);
-      trname.innerHTML = $('#name_of_group').val();
-      name.appendChild(trname)
-      return name;
+      let trname = document.createElement('tr');
+      let tdname = document.createElement('td');
+
+      tdname.setAttribute('colspan',5);
+      tdname.innerHTML = $('#name_of_group').val();
+
+      trname.appendChild(tdname)
+      return trname;
+    }
+
+    function descriptionCreate() {
+      let trdescription = document.createElement('tr');
+      let tdtime = document.createElement('td');
+      let tdname = document.createElement('td');
+      let tdtype = document.createElement('td');
+      let tdteacher = document.createElement('td');
+      let tdclassroom = document.createElement('td');
+
+      tdtime.innerHTML = 'Время';
+      tdname.innerHTML = 'Наименование предмета';
+      tdtype.innerHTML = 'Тип';
+      tdteacher.innerHTML = 'Преподаватель';
+      tdclassroom.innerHTML = 'Кабинет';
+
+      let disc_mass = [tdtime,tdname,tdtype,tdteacher,tdclassroom];
+      $.each(disc_mass, function () { 
+         trdescription.appendChild(this);
+      });
+      return trdescription
     }
 
     function dayCreate(number){
