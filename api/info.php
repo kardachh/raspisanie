@@ -135,10 +135,10 @@
     mysqli_close($link);
 
     $info=array( // возврат массива с информацией
-        "time"=>implode('\n',$arr_time),
-        "name"=>implode('\n',$arr_name),
-        "type"=>implode('\n',$arr_type),
-        "teacher"=>implode('\n',$arr_teacher),
-        "classroom"=>implode('\n',$arr_classroom)
+        "time"=>implode('',$arr_time),
+        "name"=>implode('<hr>',$arr_name),
+        "type"=>implode('<hr>',$arr_type),
+        "teacher"=>implode('<hr>',$arr_teacher),
+        "classroom"=>implode('<hr>',$arr_classroom)
     );
     echo json_encode($info);
