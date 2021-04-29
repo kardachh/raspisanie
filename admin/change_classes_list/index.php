@@ -85,12 +85,18 @@
 
     function classCreate(number_day,number_class) {
       let _class = document.createElement('tr'); // пара
+
       let time = document.createElement('td'); // время
       let name = document.createElement('td'); // название пары
       let type = document.createElement('td'); // тип
       let teacher = document.createElement('td'); // препод
       let classroom = document.createElement('td'); // кабинет
-      let url = '../../api/info.php';
+      let url = '../../api/list_of_all.php';
+
+      let select_name = document.createElement('select');
+      $(select_name).addClass('edit_name');
+      let select_type = document.createElement('select');
+      let select_classroom = document.createElement('select');
 
       $.ajax({
         type: "post",
@@ -102,22 +108,33 @@
           number_class:number_class},
         dataType: "json",
         success: function (response) {
+          console.log(response);
           time.innerHTML = response.time;
-          name.innerHTML = response.name;
-          type.innerHTML = response.type;
-          teacher.innerHTML = response.teacher;
-          classroom.innerHTML = response.classroom;
+          // $.each(response.name, function (i, item) {
+          //   $('.edit_name').append($('<option>', { 
+          //     value: item.value,
+          //     text : $(item).text() 
+          //   }));
+          // });
+          // name.innerHTML = response.name;
+          // type.innerHTML = response.type;
+          // teacher.innerHTML = response.teacher;
+          // classroom.innerHTML = response.classroom;
         },
         error: function(response){
           console.log(response.responseText);
         }
       });
 
-      _class.appendChild(time);
-      _class.appendChild(name);
-      _class.appendChild(type);
-      _class.appendChild(teacher);
-      _class.appendChild(classroom);
+      name.append(select_name);
+      type.appendChild(select_type);
+      classroom.appendChild(select_classroom);
+
+      $(time).appendTo(_class);
+      $(name).appendTo(_class);
+      $(type).appendTo(_class);
+      $(teacher).appendTo(_class);
+      $(classroom).appendTo(_class);
       return _class
     }
 

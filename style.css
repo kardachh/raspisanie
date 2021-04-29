@@ -14,6 +14,10 @@ tr{
     border: #000 dashed 2px;
 }
 
+select{
+    width: 200px;
+}
+
 #name_of_group{
     width: 250px;
 }
