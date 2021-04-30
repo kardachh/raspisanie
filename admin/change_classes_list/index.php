@@ -1,5 +1,6 @@
 <?php 
   require_once '../../button_back.php';
+  
 ?>
 <style>
   <?php include '../../style.css'; ?>
@@ -70,9 +71,9 @@
       $('table').remove();
       let body = document.getElementById('table-space'),
         tbl  = document.createElement('table');
+        $(tbl).addClass('editable-table');
         tbl.appendChild(nameCreate());
         tbl.appendChild(descriptionCreate());
-        
         for (let i = 1; i < 7; i++){
           tbl.appendChild(dayCreate(i));
           for (let j = 1; j < 8; j++){
@@ -82,6 +83,7 @@
       
       body.appendChild(tbl);
     }
+    let url = '../../api/list_of_all.php';
 
     function classCreate(number_day,number_class) {
       let _class = document.createElement('tr'); // пара
@@ -91,12 +93,12 @@
       let type = document.createElement('td'); // тип
       let teacher = document.createElement('td'); // препод
       let classroom = document.createElement('td'); // кабинет
-      let url = '../../api/list_of_all.php';
 
       let select_name = document.createElement('select');
-      $(select_name).addClass('edit_name');
       let select_type = document.createElement('select');
       let select_classroom = document.createElement('select');
+
+      $(select_name).addClass('edit_name');
 
       $.ajax({
         type: "post",
@@ -108,14 +110,8 @@
           number_class:number_class},
         dataType: "json",
         success: function (response) {
-          console.log(response);
+          console.log(response.name);
           time.innerHTML = response.time;
-          // $.each(response.name, function (i, item) {
-          //   $('.edit_name').append($('<option>', { 
-          //     value: item.value,
-          //     text : $(item).text() 
-          //   }));
-          // });
           // name.innerHTML = response.name;
           // type.innerHTML = response.type;
           // teacher.innerHTML = response.teacher;
@@ -125,6 +121,8 @@
           console.log(response.responseText);
         }
       });
+      let option_name = document.createElement("option");
+      
 
       name.append(select_name);
       type.appendChild(select_type);

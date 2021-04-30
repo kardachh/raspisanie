@@ -5,6 +5,11 @@ table{
     vertical-align: top;
     text-align: center;
 }
+
+.editable-table td{
+    padding: 0;
+}
+
 td{
     border: #000 solid 1px;
     min-width: 120px;
