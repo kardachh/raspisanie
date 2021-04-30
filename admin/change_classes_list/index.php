@@ -172,6 +172,9 @@ require_once '../../button_back.php';
 		}
 		// вывод дня недели
 		function dayCreate(number) {
+			let start_week = new Date(document.getElementById('week-select').valueAsDate);
+			let current_day = start_week.addDays(number-1);
+			console.log(current_day);
 			let day = document.createElement('tr');
 			let trday = document.createElement('td');
 			trday.setAttribute('colspan', 5);
@@ -181,7 +184,8 @@ require_once '../../button_back.php';
 				data: 'number=' + number,
 				dataType: 'text',
 				success: function(response) {
-					trday.innerHTML = response;
+				let day_form = current_day.toISOString().split('T')[0];
+					trday.innerHTML = response + ' ('+day_form+')';
 				},
 				error: function(responce) {
 					trday.innerHTML = 'Error'
@@ -189,6 +193,12 @@ require_once '../../button_back.php';
 			});
 			day.appendChild(trday);
 			return day;
+		}
+
+		Date.prototype.addDays = function(days) {
+			var date = new Date(this.valueOf());
+			date.setDate(date.getDate() + days);
+			return date;
 		}
 
 		function fill_select() {
@@ -242,7 +252,6 @@ require_once '../../button_back.php';
 		}
 
 		$('#add-btn').click(function() {
-			let week = new Date(document.getElementById('week-select').valueAsDate);
 			if ($('#name_of_group option:selected').text() != "" && $('#week-select').val() != "") {
 				tableCreate();
 			}

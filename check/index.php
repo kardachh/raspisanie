@@ -158,25 +158,34 @@
       return trdescription
     }
 
-    function dayCreate(number){
-      let day = document.createElement('tr');
-      let trday = document.createElement('td');
-      trday.setAttribute('colspan', 5);
-      $.ajax({ // получение дня недели 
-        type: "post",
-        url: "../../api/date.php",
-        data: 'number=' + number,
-        dataType: 'text',
-        success: function (response) {
-          trday.innerHTML = response;
-        },
-        error:function(responce){
-          trday.innerHTML = 'Error'
-        }
-      });
-      day.appendChild(trday);
-      return day;
-    }
+    function dayCreate(number) {
+			let start_week = new Date(document.getElementById('week-select').valueAsDate);
+			let current_day = start_week.addDays(number-1);
+			let day = document.createElement('tr');
+			let trday = document.createElement('td');
+			trday.setAttribute('colspan', 5);
+			$.ajax({ // получение дня недели 
+				type: "post",
+				url: "../../api/date.php",
+				data: 'number=' + number,
+				dataType: 'text',
+				success: function(response) {
+				let day_form = current_day.toISOString().split('T')[0];
+					trday.innerHTML = response + ' ('+day_form+')';
+				},
+				error: function(responce) {
+					trday.innerHTML = 'Error'
+				}
+			});
+			day.appendChild(trday);
+			return day;
+		}
+
+		Date.prototype.addDays = function(days) {
+			var date = new Date(this.valueOf());
+			date.setDate(date.getDate() + days);
+			return date;
+		}
 
     $('#add-btn').click(function () {
       let week = new Date(document.getElementById('week-select').valueAsDate);
