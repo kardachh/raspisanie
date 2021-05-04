@@ -26,3 +26,32 @@ select{
 #name_of_group{
     width: 250px;
 }
+/* da */
+.day{
+    min-height: 48px;
+    margin: 10px;
+    background-color: aquamarine;
+    border: #000 dashed 1px;
+}
+.class_select,.type_select,.classroom_select{
+    width: 100px;
+}
+
+.time{
+    border: #fff solid 1px;
+    margin: 3px;
+    padding: 5px;
+}
+
+.buttons-area{
+    /* position: absolute;
+    right: 10%; */
+    display: inline-block;
+    /* display: none; */
+}
+
+.number-cont{
+    width: min-content;
+    border: #000 solid 1px;
+    display: inline-block;
+}

@@ -174,7 +174,6 @@ require_once '../../button_back.php';
 		function dayCreate(number) {
 			let start_week = new Date(document.getElementById('week-select').valueAsDate);
 			let current_day = start_week.addDays(number-1);
-			console.log(current_day);
 			let day = document.createElement('tr');
 			let trday = document.createElement('td');
 			trday.setAttribute('colspan', 5);

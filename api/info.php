@@ -45,7 +45,7 @@
     // запрос времени
     $sql_time = "SELECT `Time` FROM Classes_Time WHERE `ID` = $time";
     // запрос всего остального
-    $sql_all = "$sql_classes_selector AND List_Of_Classes.ID_Class = $time AND Day_Of_Week.ID = $day AND WEEK.Week = '$week' AND Groups.Name = '$group'";
+    $sql_all = "$sql_classes_selector AND List_Of_Classes.ID_Classes_Time = $time AND Day_Of_Week.ID = $day AND WEEK.Week = '$week' AND Groups.Name = '$group'";
 
     $arr_time = [];
     $arr_name = [];
