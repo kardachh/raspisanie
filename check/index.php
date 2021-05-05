@@ -59,10 +59,14 @@ require_once '../button_back.php';
 
 <div id='table-space'></div>
 
+<script src='../../moment.js'></script>
 <script src='../../jquery.js'></script>
 <!-- <script src = 'script_add_rasp.js'></script> -->
 <script>
 	$(document).ready(function() {
+		$('#week-select').val(moment().format('YYYY-')+'W'+moment().format('W'));
+		
+
 		function tableCreate() {
 			$('table').remove();
 			let body = document.getElementById('table-space'),
@@ -105,7 +109,7 @@ require_once '../button_back.php';
 				},
 				dataType: "json",
 				success: function(response) {
-					console.log(response);
+					// console.log(response);
 					time.innerHTML = response.time;
 					name.innerHTML = response.name;
 					type.innerHTML = response.type;
@@ -192,5 +196,6 @@ require_once '../button_back.php';
 				tableCreate();
 			}
 		});
+		tableCreate();
 	});
 </script>

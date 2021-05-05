@@ -24,7 +24,7 @@
 				$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
 				if ($result) {
 					while ($row = mysqli_fetch_array($result)) {
-						echo '<option value=', $row['Name'], '>', $row['Name'], '</option>';
+						echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
 					}
 				}
 				// закрываем подключение
@@ -38,84 +38,37 @@
 	</form> <!-- загрузка групп из БД -->
 </div>
 
-
-
 <div id = table>
-	<?php
-        for ($i=1; $i < 7; $i++) { ?>
-            <div id = <?=$i?> class = 'day day-<?= $i ?>'>
-                <?php 
-                    for ($j=1; $j < 8; $j++) {  ?>
-                        <form class = 'time time <?= $j ?>'>
-                            <div class='number-cont'><?=$j?></div>
-                            <select class = 'class_select'>
-                                <option value="-1">нет</option>
-                                <?php
-                                    // подключаемся к серверу
-                                    $link = mysqli_connect($host, $user, $password, $database)
-                                        or die("Ошибка " . mysqli_error($link));
-
-                                    // выполняем операции с базой данных
-                                    $query = "SELECT * FROM Classes";
-                                    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-                                    if ($result) {
-                                        while ($row = mysqli_fetch_array($result)) {
-                                            echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
-                                        }
-                                    }
-                                    // закрываем подключение
-                                    mysqli_close($link);
-                                ?>
-                            </select>
-                            <select class = 'type_select'>
-                            <option value="-1">нет</option>
-                                <?php
-                                    // подключаемся к серверу
-                                    $link = mysqli_connect($host, $user, $password, $database)
-                                        or die("Ошибка " . mysqli_error($link));
-
-                                    // выполняем операции с базой данных
-                                    $query = "SELECT * FROM Class_Type";
-                                    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-                                    if ($result) {
-                                        while ($row = mysqli_fetch_array($result)) {
-                                            echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
-                                        }
-                                    }
-                                    // закрываем подключение
-                                    mysqli_close($link);
-                                ?>
-                            </select>
-                            <select class = 'classroom_select'>
-                            <option value="-1">нет</option>
-                                <?php
-                                    // подключаемся к серверу
-                                    $link = mysqli_connect($host, $user, $password, $database)
-                                        or die("Ошибка " . mysqli_error($link));
-
-                                    // выполняем операции с базой данных
-                                    $query = "SELECT * FROM Classrooms";
-                                    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-                                    if ($result) {
-                                        while ($row = mysqli_fetch_array($result)) {
-                                            echo '<option value=', $row['Number'], '>', $row['Number'], '</option>';
-                                        }
-                                    }
-                                    // закрываем подключение
-                                    mysqli_close($link);
-                                ?>
-                            </select>
-                            <div class='buttons-area'>
-                                <button>Add</button>
-                                <button>Del</button>
-                            </div>
-                        </form>
-                    <?php
-                    }
-                ?>
-            </div>
-        <?php
-        }
+	<?php 
+        // require 'form.php';
     ?>
 </div>
+<script src='../../moment.js'></script>
 <script src='../../jquery.js'></script>
+<script>
+    $(document).ready(function () {
+		$('#week-select').val(moment().format('YYYY-')+'W'+moment().format('W'));      
+    });
+    $('#add-btn').click(function (e) { 
+            $.ajax({
+                type: "post",
+                url: "form.php",
+                data: {
+                    week:$('#week-select').val(),
+                    group:$('#name_of_group').text()
+                },
+                dataType: "dataType",
+                success: function (response) {
+                    console.log('ok');
+                    // console.log(response);
+                    $('#table').text(response);
+
+                },
+                error: function (response) {
+                    console.log('err');
+					// console.log(response.responseText);
+                    $('#table').html(response.responseText);
+                }
+            });
+        });  
+</script>

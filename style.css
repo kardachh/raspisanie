@@ -29,16 +29,17 @@ select{
 /* da */
 .day{
     min-height: 48px;
+    padding: 10px;
     margin: 10px;
-    background-color: aquamarine;
-    border: #000 dashed 1px;
+    background-color: rgba(228, 228, 228, 0.247);
+    border: rgb(0, 0, 0) dashed 1px;
 }
 .class_select,.type_select,.classroom_select{
     width: 100px;
 }
 
 .time{
-    border: #fff solid 1px;
+    border: #000 solid 1px;
     margin: 3px;
     padding: 5px;
 }
@@ -50,8 +51,26 @@ select{
     /* display: none; */
 }
 
+.buttons-area button{
+    /* padding: 3px; */
+}
+
 .number-cont{
     width: min-content;
+    padding: 3px;
     border: #000 solid 1px;
     display: inline-block;
+}
+
+.class-cont{
+    width: 500px;
+    padding: 3px;
+
+    border: #000 solid 1px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.class-cont .class:hover{
+    background-color: darkgray;
 }

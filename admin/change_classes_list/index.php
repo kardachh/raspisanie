@@ -62,6 +62,7 @@ require_once '../../button_back.php';
 <div id='table-space'></div>
 
 <script src='../../jquery.js'></script>
+<script src='../../moment.js'></script>
 <!-- <script src = 'script_add_rasp.js'></script> -->
 <script>
 	$(document).ready(function() {
