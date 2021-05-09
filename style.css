@@ -63,7 +63,7 @@ select{
 }
 
 .class-cont{
-    width: 500px;
+    /* width: 500px; */
     padding: 3px;
 
     border: #000 solid 1px;
@@ -73,4 +73,14 @@ select{
 
 .class-cont .class:hover{
     background-color: darkgray;
+}
+
+.add-select{
+    display: none;
+    margin: 5px;
+}
+
+.editable-select{
+    display: none;
+    margin: 5px 0;
 }

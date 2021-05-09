@@ -49,26 +49,26 @@
     $(document).ready(function () {
 		$('#week-select').val(moment().format('YYYY-')+'W'+moment().format('W'));      
     });
-    $('#add-btn').click(function (e) { 
-            $.ajax({
-                type: "post",
-                url: "form.php",
-                data: {
-                    week:$('#week-select').val(),
-                    group:$('#name_of_group').text()
-                },
-                dataType: "dataType",
-                success: function (response) {
-                    console.log('ok');
-                    // console.log(response);
-                    $('#table').text(response);
 
-                },
-                error: function (response) {
-                    console.log('err');
-					// console.log(response.responseText);
-                    $('#table').html(response.responseText);
-                }
-            });
-        });  
+	$('#add-btn').click(function (e) { 
+		$.ajax({
+			type: "post",
+			url: "form.php",
+			data: {
+				week:$('#week-select').val(),
+				group:$('#name_of_group').val()
+			},
+			// dataType: "dataType",
+			success: function (response) {
+				console.log('ok');
+				// console.log(response);
+				$('#table').html(response);
+			},
+			error: function (response) {
+				console.log('err');
+				// console.log(response.responseText);
+				$('#table').html(response.responseText);
+			}
+		});
+	});
 </script>
