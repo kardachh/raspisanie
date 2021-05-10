@@ -198,4 +198,12 @@ require_once '../button_back.php';
 		});
 		tableCreate();
 	});
+
+	$('#week-select').on('change', function() {
+		$('#add-btn').click();
+	});
+
+	$('#name_of_group').on('change', function() {
+		$('#add-btn').click();
+	});
 </script>

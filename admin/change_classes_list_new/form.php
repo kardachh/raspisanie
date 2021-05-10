@@ -18,6 +18,7 @@ for ($i = 1; $i < 7; $i++) { ?>
 
                         // выполняем операции с базой данных
                         $query = "SELECT
+                                    List_Of_Classes.ID AS 'id',
                                     WEEK.Week AS 'week',
                                     Groups.Name AS 'group',
                                     Day_Of_Week.Name AS 'day_of_week',
@@ -61,7 +62,7 @@ for ($i = 1; $i < 7; $i++) { ?>
                                     AND
                                     Week.Week = '$week'
                                     AND
-                                    Groups.ID =$group_id
+                                    Groups.ID = $group_id
                                     ";
                         $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
                         if ($result) {
@@ -69,7 +70,7 @@ for ($i = 1; $i < 7; $i++) { ?>
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_array($result)) {
                     ?>
-                                    <div class='class'>
+                                    <div class='class class-<?= $row['id']?>'>
                                         <?= $row['name_of_class'], ' ', $row['type'], ' ', $row['classroom'] ?>
                                         <div class='buttons-area'>
                                             <button type = 'button' class="btn-edit">Edit</button>
@@ -88,8 +89,29 @@ for ($i = 1; $i < 7; $i++) { ?>
                                                     }
                                                 ?>
                                             </select>
-                                            <select class="select-type"></select>
-                                            <select class="select-classroom"></select>
+                                            <select class="select-type">
+                                            <?php
+                                                $query_type = "SELECT * FROM Class_Type";
+                                                $result_type = mysqli_query($link, $query_type) or die("Ошибка " . mysqli_error($link));
+                                                if ($result_type) {
+                                                    while ($row = mysqli_fetch_array($result_type)) {
+                                                        echo '<option value=', $row['ID'], '>', $row['Name'] ,'</option>';
+                                                    }
+                                                }
+                                            ?>
+                                            </select>
+                                            <select class="select-classroom">
+                                            <?php
+                                                $query_classroom = "SELECT * FROM Classrooms";
+                                                $result_classroom = mysqli_query($link, $query_classroom) or die("Ошибка " . mysqli_error($link));
+                                                if ($result_classroom) {
+                                                    while ($row = mysqli_fetch_array($result_classroom)) {
+                                                        echo '<option value=', $row['Number'], '>', $row['Number'], '</option>';
+                                                    }
+                                                }
+                                            ?>
+                                            </select>
+                                            <button type="button" class="btn-save">Сохранить</button>
                                         </div>
                                         
                                     </div>
@@ -126,7 +148,7 @@ for ($i = 1; $i < 7; $i++) { ?>
                             $result_type = mysqli_query($link, $query_type) or die("Ошибка " . mysqli_error($link));
                             if ($result_type) {
                                 while ($row = mysqli_fetch_array($result_type)) {
-                                    echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
+                                    echo '<option value=', $row['ID'], '>', $row['Name'] ,'</option>';
                                 }
                             }
                         ?>
@@ -164,9 +186,40 @@ mysqli_close($link);
 	});
 
     $('.btn-edit').click(function (e) {
-        console.log(e.target)
-		$('.editable-select').toggle(300);
+        let parent = $(e.target).parent().parent()[0];
+        let field = $(parent).find('.editable-select');
+		$(field).toggle(300);
 	});
+
+    $('.btn-save').click(function (e) {
+        let parent = $(e.target).parent()[0];
+        let id = $(parent).parent().attr('class').slice(12);
+        let fields = $(parent).children();
+        let select_name = $(fields[0]).val(); // id пары
+        let select_type = $(fields[1]).val(); // id типа
+        let select_classroom = $(fields[2]).val(); // id кабинета
+        let day_of_week = $(parent).parent().parent().parent().attr('id'); // день недели
+        let time = $(parent).parent().parent().attr('class')[10]; // номер пары
+        $.ajax({
+            type: "post",
+            url: "/api/edit_class.php",
+            data: {
+                id:id,
+                name_id:select_name,
+                type_id:select_type,
+                classroom:select_classroom
+            },
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                $('#add-btn').click();
+            },
+            error: function (response) {
+                console.log(response.responseText);
+                $('#add-btn').click();
+            }
+        });
+    });
 
     $('.btn-submit').click(function (e) {
         let parent = $(e.target).parent()[0];
@@ -201,7 +254,25 @@ mysqli_close($link);
     });
 
     $('.btn-del').click(function (e) {
-        console.log(e.target)
-		$('.editable-select').toggle(300);
+        let parent = $(e.target).parent()[0];
+        let id = $(parent).parent().attr('class').slice(12);
+        console.log(id);
+
+        $.ajax({
+            type: "post",
+            url: "/api/del_class.php",
+            data: {
+                id:id
+            },
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                $('#add-btn').click();
+            },
+            error: function (response) {
+                console.log(response.responseText);
+                $('#add-btn').click();
+            }
+        });
 	});
 </script>

@@ -60,15 +60,21 @@
 			},
 			// dataType: "dataType",
 			success: function (response) {
-				console.log('ok');
 				// console.log(response);
 				$('#table').html(response);
 			},
 			error: function (response) {
-				console.log('err');
 				// console.log(response.responseText);
 				$('#table').html(response.responseText);
 			}
 		});
+	});
+
+	$('#week-select').on('change', function() {
+		$('#add-btn').click();
+	});
+
+	$('#name_of_group').on('change', function() {
+		$('#add-btn').click();
 	});
 </script>
