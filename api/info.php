@@ -23,6 +23,8 @@
             Groups,
             Teachers
         WHERE
+            List_Of_Classes.ID_Week = Week.ID 
+            AND
             List_Of_Classes.ID_Day_Of_Week = Day_Of_Week.ID 
             AND 
             List_Of_Classes.ID_Classes_Time = Classes_Time.ID 

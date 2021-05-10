@@ -39,6 +39,8 @@ for ($i = 1; $i < 7; $i++) { ?>
                                     Groups,
                                     Teachers
                                 WHERE
+                                    List_Of_Classes.ID_Week = Week.ID 
+                                    AND
                                     List_Of_Classes.ID_Day_Of_Week = Day_Of_Week.ID 
                                     AND 
                                     List_Of_Classes.ID_Classes_Time = Classes_Time.ID 
@@ -152,8 +154,6 @@ for ($i = 1; $i < 7; $i++) { ?>
 <?php
 }
 mysqli_close($link);
-
-// echo $week,' ',$group;
 ?>
 
 <script>
@@ -178,7 +178,7 @@ mysqli_close($link);
         let time = $(parent).parent().parent().attr('class')[10]; // номер пары
         $.ajax({
             type: "post",
-            url: "url",
+            url: "/api/add_class.php",
             data: {
                 group:$('#name_of_group').val(),
                 week: $('#week-select').val(),
@@ -190,11 +190,18 @@ mysqli_close($link);
             },
             dataType: "json",
             success: function (response) {
-                console.log(response)
+                console.log(response);
+                $('#add-btn').click();
             },
             error: function (response) {
-                
+                console.log(response.responseText);
+                $('#add-btn').click();
             }
         });
     });
+
+    $('.btn-del').click(function (e) {
+        console.log(e.target)
+		$('.editable-select').toggle(300);
+	});
 </script>
