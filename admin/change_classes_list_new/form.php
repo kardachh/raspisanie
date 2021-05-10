@@ -1,4 +1,4 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php'; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php';?>
 <?php
 $week = $_POST['week'];
 $group_id = $_POST['group'];
