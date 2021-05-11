@@ -12,7 +12,6 @@ table{
 
 td{
     border: #000 solid 1px;
-    min-width: 120px;
     padding: 5px 10px;
 }
 tr{
@@ -32,7 +31,7 @@ select{
     padding: 10px;
     margin: 10px;
     background-color: rgba(228, 228, 228, 0.247);
-    border: rgb(0, 0, 0) dashed 1px;
+    border: rgb(0, 0, 0) solid 1px;
 }
 .class_select,.type_select,.classroom_select{
     width: 100px;
@@ -45,34 +44,35 @@ select{
 }
 
 .buttons-area{
-    /* position: absolute;
-    right: 10%; */
-    display: inline-block;
-    /* display: none; */
-}
-
-.buttons-area button{
-    /* padding: 3px; */
+    position: absolute;
+    /* right: 10%; */
+    display: none;
 }
 
 .number-cont{
-    width: min-content;
+    /* width: min-content; */
     padding: 3px;
-    border: #000 solid 1px;
+    /* border: #000 solid 1px; */
     display: inline-block;
+    margin: 4px 0;
 }
 
 .class-cont{
-    /* width: 500px; */
-    padding: 3px;
-
-    border: #000 solid 1px;
+    width: 100%;
+    position: relative;
+    /* border: #000 solid 1px; */
     display: inline-block;
     vertical-align: top;
 }
+.class{
+    margin: 1px 0;
+    padding: 5px;
+    border: black solid 1px;
+}
 
 .class-cont .class:hover{
-    background-color: darkgray;
+    background-color: rgba(169, 169, 169, 0.295);
+    min-width: 25px;
 }
 
 .add-select{
@@ -83,4 +83,28 @@ select{
 .editable-select{
     display: none;
     margin: 5px 0;
+}
+
+.class:hover .buttons-area{
+    display: inline-block;
+    right: 5%;
+
+}
+
+.day_of_week{
+    width: fit-content;
+    padding: 5px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+    table{
+        font-size: 3vw;
+    }
+    td{
+        padding: 5px;
+    }
+    a{
+        font-size: larger;
+    }
 }

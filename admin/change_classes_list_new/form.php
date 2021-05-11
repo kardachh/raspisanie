@@ -2,14 +2,26 @@
 <?php
 $week = $_POST['week'];
 $group_id = $_POST['group'];
-$days_of_week = ['Понедельник', 'Вторник', "Среда", "Четверг", "Пятница", "Суббота"];
+$time = [];
+
+$link = mysqli_connect($host, $user, $password, $database) or die("Ошибка подключения");
+$query_time = "SELECT * FROM `Classes_Time`";
+$result_time = mysqli_query($link, $query_time) or die("Ошибка " . mysqli_error($link));
+if ($result_time) {
+    while ($row = mysqli_fetch_array($result_time)) {
+        array_push($time,$row['Time']);
+    }
+}
+mysqli_close($link);
+
+$days_of_week = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 for ($i = 1; $i < 7; $i++) { ?>
     <div id=<?= $i ?> class='day day-<?= $i ?>'>
         <div class='day_of_week'><?= $days_of_week[$i - 1] ?></div>
         <?php
         for ($j = 1; $j < 8; $j++) {  ?>
             <form class='time time <?= $j ?>'>
-                <div class='number-cont'><?= $j ?></div>
+                <div class='number-cont'><?= $time[$j-1] ?></div>
                 <div class='class-cont'>
                     <?php
                         // подключаемся к серверу
@@ -73,8 +85,8 @@ for ($i = 1; $i < 7; $i++) { ?>
                                     <div class='class class-<?= $row['id']?>'>
                                         <?= $row['name_of_class'], ' ', $row['type'], ' ', $row['classroom'] ?>
                                         <div class='buttons-area'>
-                                            <button type = 'button' class="btn-edit">Edit</button>
-                                            <button type = 'button' class="btn-del">Del</button>
+                                            <button type = 'button' class="btn-edit">Изменить</button>
+                                            <button type = 'button' class="btn-del">Удалить</button>
                                         </div>
                                         <br>
                                         <div class="editable-select">
@@ -125,11 +137,10 @@ for ($i = 1; $i < 7; $i++) { ?>
                     </div>
                 <?php
                 };
-                    }
-                    // закрываем подключение
-                    
+            }                    
                     ?>
-                    <button type = 'button' class="btn-add">Add</button>
+                    <br>
+                    <button type = 'button' class="btn-add">Добавить</button>
                     <div class="add-select">
                         <select class="select-name">
                         <?php

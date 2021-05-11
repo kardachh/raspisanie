@@ -1,5 +1,8 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT'].'/button_back.php';
+    $parent_dir = '../index.php';
+?>
+<a href='<?= $parent_dir;?>'>Назад</a>
+<?php
     echo '<br>';
     require 'auth.php';
 ?>

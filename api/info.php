@@ -113,7 +113,13 @@
     if($result)
     {
         while ($row = mysqli_fetch_array($result)) {
-            $fio = $row['second_name'].' '.$row['first_name'].' '.$row['middle_name'];
+            // $fio = $row['second_name'].' '.$row['first_name'].' '.$row['middle_name'];
+            $fio = $row['second_name']
+            .' '.
+            mb_substr($row['first_name'], 0, 1-mb_strlen($row['first_name']))
+            .'.'.
+            mb_substr($row['middle_name'], 0,1-mb_strlen($row['middle_name']))
+            .'.';
             array_push($arr_teacher, $fio);
         }
     }

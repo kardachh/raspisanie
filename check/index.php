@@ -117,10 +117,12 @@ require_once '../button_back.php';
 					classroom.innerHTML = response.classroom;
 				},
 				error: function(response) {
+					$('table').remove();
+					$('body').html('Ошибка получения расписания');
 					console.log(response.responseText);
+					console.log(response);
 				}
 			});
-
 			_class.appendChild(time);
 			_class.appendChild(name);
 			_class.appendChild(type);

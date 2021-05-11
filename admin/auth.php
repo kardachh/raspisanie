@@ -3,7 +3,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php'; // подключа�
 // подключаемся к серверу
 $link = mysqli_connect($host, $user, $password, $database) or die("Ошибка БД");
 
-
 if (isset($_POST['auth_name']) or isset($_SESSION['user_id'])) {
 	echo $host;
 	$name = mysqli_real_escape_string($link, $_POST['auth_name']);
@@ -14,6 +13,7 @@ if (isset($_POST['auth_name']) or isset($_SESSION['user_id'])) {
 		session_start();
 		$_SESSION['user_id'] = $row['id'];
 		$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+		$_SESSION['phpsess_id'] = $_COOKIE['PHPSESSID'];
 	}
 	header("Location: http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 	exit;
@@ -29,11 +29,15 @@ session_start();
 if (isset($_SESSION['user_id']) and $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) return;
 else {
 ?>
+	<h2>Авторизация</h2>
 	<form method="post">
-		<input type="text" name='auth_name' value="kardachh"required><br>
-		<input type="password" name="auth_pass" value="123"required><br>
+		Логин: <input type="text" name='auth_name'required><br>
+		Пароль: <input type="password" name="auth_pass" required>
+		<br>
+		<br>
 		<input type="submit"><br>
 	</form>
 <?php
 }
+mysqli_close($link);
 exit;
