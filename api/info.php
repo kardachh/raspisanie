@@ -150,3 +150,8 @@
         "classroom"=>implode('<hr>',$arr_classroom)
     );
     echo json_encode($info);
+    // $info=array();
+    // foreach($_POST as $key=>$value){
+    //     array_push($info, $key.' = '.$value);
+    // }
+    // echo json_encode($info);

@@ -1,4 +1,4 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php';?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php'; ?>
 <?php
 $week = $_POST['week'];
 $group_id = $_POST['group'];
@@ -9,7 +9,7 @@ $query_time = "SELECT * FROM `Classes_Time`";
 $result_time = mysqli_query($link, $query_time) or die("Ошибка " . mysqli_error($link));
 if ($result_time) {
     while ($row = mysqli_fetch_array($result_time)) {
-        array_push($time,$row['Time']);
+        array_push($time, $row['Time']);
     }
 }
 mysqli_close($link);
@@ -21,15 +21,15 @@ for ($i = 1; $i < 7; $i++) { ?>
         <?php
         for ($j = 1; $j < 8; $j++) {  ?>
             <form class='time time <?= $j ?>'>
-                <div class='number-cont'><?= $time[$j-1] ?></div>
+                <div class='number-cont'><?= $time[$j - 1] ?></div>
                 <div class='class-cont'>
                     <?php
-                        // подключаемся к серверу
-                        $link = mysqli_connect($host, $user, $password, $database)
-                            or die("Ошибка " . mysqli_error($link));
+                    // подключаемся к серверу
+                    $link = mysqli_connect($host, $user, $password, $database)
+                        or die("Ошибка " . mysqli_error($link));
 
-                        // выполняем операции с базой данных
-                        $query = "SELECT
+                    // выполняем операции с базой данных
+                    $query = "SELECT
                                     List_Of_Classes.ID AS 'id',
                                     WEEK.Week AS 'week',
                                     Groups.Name AS 'group',
@@ -76,96 +76,114 @@ for ($i = 1; $i < 7; $i++) { ?>
                                     AND
                                     Groups.ID = $group_id
                                     ";
-                        $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-                        if ($result) {
-                            // print_r($result);
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_array($result)) {
+                    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+                    if ($result) {
+                        // print_r($result);
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_array($result)) {
+                                $fio = $row['second_name']
+                                        . ' ' .
+                                        mb_substr($row['first_name'], 0, 1 - mb_strlen($row['first_name']))
+                                        . '.' .
+                                        mb_substr($row['middle_name'], 0, 1 - mb_strlen($row['middle_name']))
+                                        . '.';
                     ?>
-                                    <div class='class class-<?= $row['id']?>'>
-                                        <?= $row['name_of_class'], ' ', $row['type'], ' ', $row['classroom'] ?>
-                                        <div class='buttons-area'>
-                                            <button type = 'button' class="btn-edit">Изменить</button>
-                                            <button type = 'button' class="btn-del">Удалить</button>
-                                        </div>
-                                        <br>
-                                        <div class="editable-select">
-                                            <select class="select-name">
-                                                <?php
-                                                    $query_name = "SELECT * FROM Classes";
-                                                    $result_name = mysqli_query($link, $query_name) or die("Ошибка " . mysqli_error($link));
-                                                    if ($result_name) {
-                                                        while ($row = mysqli_fetch_array($result_name)) {
-                                                            echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
-                                                        }
-                                                    }
-                                                ?>
-                                            </select>
-                                            <select class="select-type">
-                                            <?php
-                                                $query_type = "SELECT * FROM Class_Type";
-                                                $result_type = mysqli_query($link, $query_type) or die("Ошибка " . mysqli_error($link));
-                                                if ($result_type) {
-                                                    while ($row = mysqli_fetch_array($result_type)) {
-                                                        echo '<option value=', $row['ID'], '>', $row['Name'] ,'</option>';
-                                                    }
-                                                }
-                                            ?>
-                                            </select>
-                                            <select class="select-classroom">
-                                            <?php
-                                                $query_classroom = "SELECT * FROM Classrooms";
-                                                $result_classroom = mysqli_query($link, $query_classroom) or die("Ошибка " . mysqli_error($link));
-                                                if ($result_classroom) {
-                                                    while ($row = mysqli_fetch_array($result_classroom)) {
-                                                        echo '<option value=', $row['Number'], '>', $row['Number'], '</option>';
-                                                    }
-                                                }
-                                            ?>
-                                            </select>
-                                            <button type="button" class="btn-save">Сохранить</button>
-                                        </div>
-                                        
+                                <div class='class class-<?= $row['id'] ?>'>
+                                    <?= $row['name_of_class'], ' ', $row['type'], ' ', $row['classroom'], ' ', $fio?>
+                                    <div class='buttons-area'>
+                                        <button type='button' class="btn-edit">Изменить</button>
+                                        <button type='button' class="btn-del">Удалить</button>
                                     </div>
-                                    
-                    <?php
+                                    <br>
+                                    <div class="editable-select">
+                                        <select class="select-name">
+                                            <?php
+                                            $query_name = "SELECT Classes.ID,Classes.Name,Teachers.Second_Name,Teachers.First_Name,Teachers.Middle_Name FROM Classes,Teachers WHERE Classes.ID_Teacher = Teachers.ID";
+                                            $result_name = mysqli_query($link, $query_name) or die("Ошибка " . mysqli_error($link));
+                                            if ($result_name) {
+                                                while ($row = mysqli_fetch_array($result_name)) {
+                                                    $fio = $row['Second_Name']
+                                                        . ' ' .
+                                                        mb_substr($row['First_Name'], 0, 1 - mb_strlen($row['First_Name']))
+                                                        . '.' .
+                                                        mb_substr($row['Middle_Name'], 0, 1 - mb_strlen($row['Middle_Name']))
+                                                        . '.';
+                                                    echo '<option value=', $row['ID'], '>', $row['Name'], ' (', $fio, ')</option>';
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                        <select class="select-type">
+                                            <?php
+                                            $query_type = "SELECT * FROM Class_Type";
+                                            $result_type = mysqli_query($link, $query_type) or die("Ошибка " . mysqli_error($link));
+                                            if ($result_type) {
+                                                while ($row = mysqli_fetch_array($result_type)) {
+                                                    echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                        <select class="select-classroom">
+                                            <?php
+                                            $query_classroom = "SELECT * FROM Classrooms";
+                                            $result_classroom = mysqli_query($link, $query_classroom) or die("Ошибка " . mysqli_error($link));
+                                            if ($result_classroom) {
+                                                while ($row = mysqli_fetch_array($result_classroom)) {
+                                                    echo '<option value=', $row['Number'], '>', $row['Number'], '</option>';
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                        <button type="button" class="btn-save">Сохранить</button>
+                                    </div>
+
+                                </div>
+
+                            <?php
                             }
                         } else {
                             ?>
                             <div class='class'>
                                 Пусто
-                    </div>
-                <?php
-                };
-            }                    
+                            </div>
+                    <?php
+                        };
+                    }
                     ?>
                     <br>
-                    <button type = 'button' class="btn-add">Добавить</button>
+                    <button type='button' class="btn-add">Добавить</button>
                     <div class="add-select">
                         <select class="select-name">
-                        <?php
-                            $query_name = "SELECT * FROM Classes";
+                            <?php
+                            $query_name = "SELECT Classes.ID,Classes.Name,Teachers.Second_Name,Teachers.First_Name,Teachers.Middle_Name FROM Classes,Teachers WHERE Classes.ID_Teacher = Teachers.ID";
                             $result_name = mysqli_query($link, $query_name) or die("Ошибка " . mysqli_error($link));
                             if ($result_name) {
                                 while ($row = mysqli_fetch_array($result_name)) {
-                                    echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
+                                    $fio = $row['Second_Name']
+                                        . ' ' .
+                                        mb_substr($row['First_Name'], 0, 1 - mb_strlen($row['First_Name']))
+                                        . '.' .
+                                        mb_substr($row['Middle_Name'], 0, 1 - mb_strlen($row['Middle_Name']))
+                                        . '.';
+                                    echo '<option value=', $row['ID'], '>', $row['Name'], ' (', $fio, ')</option>';
                                 }
                             }
-                        ?>
+                            ?>
                         </select>
                         <select class="select-type">
-                        <?php
+                            <?php
                             $query_type = "SELECT * FROM Class_Type";
                             $result_type = mysqli_query($link, $query_type) or die("Ошибка " . mysqli_error($link));
                             if ($result_type) {
                                 while ($row = mysqli_fetch_array($result_type)) {
-                                    echo '<option value=', $row['ID'], '>', $row['Name'] ,'</option>';
+                                    echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
                                 }
                             }
-                        ?>
+                            ?>
                         </select>
                         <select class="select-classroom">
-                        <?php
+                            <?php
                             $query_classroom = "SELECT * FROM Classrooms";
                             $result_classroom = mysqli_query($link, $query_classroom) or die("Ошибка " . mysqli_error($link));
                             if ($result_classroom) {
@@ -173,7 +191,7 @@ for ($i = 1; $i < 7; $i++) { ?>
                                     echo '<option value=', $row['Number'], '>', $row['Number'], '</option>';
                                 }
                             }
-                        ?>
+                            ?>
                         </select>
                         <button type="button" class="btn-submit">Добавить</button>
                     </div>
@@ -183,26 +201,26 @@ for ($i = 1; $i < 7; $i++) { ?>
         }
         ?>
     </div>
-    
+
 <?php
 }
 mysqli_close($link);
 ?>
 
 <script>
-    $('.btn-add').click(function (e) {
+    $('.btn-add').click(function(e) {
         let parent = $(e.target).parent()[0];
         let field = $(parent).find('.add-select');
-		$(field).toggle(300);
-	});
+        $(field).toggle(300);
+    });
 
-    $('.btn-edit').click(function (e) {
+    $('.btn-edit').click(function(e) {
         let parent = $(e.target).parent().parent()[0];
         let field = $(parent).find('.editable-select');
-		$(field).toggle(300);
-	});
+        $(field).toggle(300);
+    });
 
-    $('.btn-save').click(function (e) {
+    $('.btn-save').click(function(e) {
         let parent = $(e.target).parent()[0];
         let id = $(parent).parent().attr('class').slice(12);
         let fields = $(parent).children();
@@ -215,24 +233,24 @@ mysqli_close($link);
             type: "post",
             url: "/api/edit_class.php",
             data: {
-                id:id,
-                name_id:select_name,
-                type_id:select_type,
-                classroom:select_classroom
+                id: id,
+                name_id: select_name,
+                type_id: select_type,
+                classroom: select_classroom
             },
             dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 console.log(response);
                 $('#add-btn').click();
             },
-            error: function (response) {
+            error: function(response) {
                 console.log(response.responseText);
                 $('#add-btn').click();
             }
         });
     });
 
-    $('.btn-submit').click(function (e) {
+    $('.btn-submit').click(function(e) {
         let parent = $(e.target).parent()[0];
         let fields = $(parent).children();
         let select_name = $(fields[0]).val(); // id пары
@@ -244,27 +262,27 @@ mysqli_close($link);
             type: "post",
             url: "/api/add_class.php",
             data: {
-                group:$('#name_of_group').val(),
+                group: $('#name_of_group').val(),
                 week: $('#week-select').val(),
                 day_of_week: day_of_week,
-                time:time,
-                name_id:select_name,
-                type_id:select_type,
-                classroom:select_classroom
+                time: time,
+                name_id: select_name,
+                type_id: select_type,
+                classroom: select_classroom
             },
             dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 console.log(response);
                 $('#add-btn').click();
             },
-            error: function (response) {
+            error: function(response) {
                 console.log(response.responseText);
                 $('#add-btn').click();
             }
         });
     });
 
-    $('.btn-del').click(function (e) {
+    $('.btn-del').click(function(e) {
         let parent = $(e.target).parent()[0];
         let id = $(parent).parent().attr('class').slice(12);
         console.log(id);
@@ -273,17 +291,17 @@ mysqli_close($link);
             type: "post",
             url: "/api/del_class.php",
             data: {
-                id:id
+                id: id
             },
             dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 console.log(response);
                 $('#add-btn').click();
             },
-            error: function (response) {
+            error: function(response) {
                 console.log(response.responseText);
                 $('#add-btn').click();
             }
         });
-	});
+    });
 </script>
