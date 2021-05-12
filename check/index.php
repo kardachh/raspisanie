@@ -23,7 +23,7 @@ require_once '../button_back.php';
 				$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
 				if ($result) {
 					while ($row = mysqli_fetch_array($result)) {
-						echo '<option value=', $row['Name'], '>', $row['Name'], '</option>';
+						echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
 					}
 				}
 				// закрываем подключение
@@ -77,13 +77,12 @@ require_once '../button_back.php';
 		let teacher = document.createElement('td'); // препод
 		let classroom = document.createElement('td'); // кабинет
 		let url = '../../api/info.php';
-		// console.log(week);
 		$.ajax({
 			type: "post",
 			url: url,
 			data: {
 				week: $('#week-select').val(),
-				group: $('#name_of_group option:selected').text(),
+				group: $('#name_of_group option:selected').val(),
 				number_day: number_day,
 				number_class: number_class
 			},
@@ -97,9 +96,9 @@ require_once '../button_back.php';
 				classroom.innerHTML = response.classroom;
 			},
 			error: function(response) {
-				$('table').remove();
-				$('body').html('Ошибка получения расписания');
-				console.log(response.responseText);
+				// $('table').remove();
+				// $('body').html('Ошибка получения расписания');
+				// console.log(response.responseText);
 				console.log(response);
 			}
 		});
@@ -116,7 +115,7 @@ require_once '../button_back.php';
 		let tdname = document.createElement('td');
 
 		tdname.setAttribute('colspan', 5);
-		tdname.innerHTML = $('#name_of_group').val();
+		tdname.innerHTML = $('#name_of_group option:selected').text()
 
 		trname.appendChild(tdname)
 		return trname;
@@ -167,11 +166,6 @@ require_once '../button_back.php';
 		return day;
 	}
 
-	Date.prototype.addDays = function(days) {
-		var date = new Date(this.valueOf());
-		date.setDate(date.getDate() + days);
-		return date;
-	}
 
 	$('#add-btn').click(function() {
 		tableCreate();
