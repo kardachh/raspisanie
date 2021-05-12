@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Май 12 2021 г., 13:54
+-- Время создания: Май 12 2021 г., 14:17
 -- Версия сервера: 5.7.26
 -- Версия PHP: 7.4.2
 
@@ -13,6 +13,8 @@ SET time_zone = "+00:00";
 --
 -- База данных: `raspisanie`
 --
+CREATE DATABASE IF NOT EXISTS `raspisanie` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `raspisanie`;
 
 -- --------------------------------------------------------
 
