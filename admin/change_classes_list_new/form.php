@@ -17,7 +17,7 @@ mysqli_close($link);
 $days_of_week = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 for ($i = 1; $i < 7; $i++) { ?>
     <div id=<?= $i ?> class='day day-<?= $i ?>'>
-        <div class='day_of_week'><?= $days_of_week[$i - 1] ?></div>
+        <div class='day_of_week'><?= $days_of_week[$i - 1].' '.date("(d.m.Y\)", strtotime($_POST['week']." " .($i-1) ." days"))?></div>
         <?php
         for ($j = 1; $j < 8; $j++) {  ?>
             <form class='time time <?= $j ?>'>
@@ -76,20 +76,79 @@ for ($i = 1; $i < 7; $i++) { ?>
                                     AND
                                     Groups.ID = $group_id
                                     ";
-                    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+
+                    $sql_classes_new =
+                        "SELECT
+                            WEEK.Week AS 'week',
+                            Day_Of_Week.Name AS 'day_of_week',
+                            Classes_Time.Time AS 'time',
+                            List_Of_Classes.ID as 'list_id',
+                            Group_Classes.ID as 'group_classes_id',
+                            Groups.Name as 'group_name',
+                            List_Of_Classes.ID as 'class_id',
+                            Classes.Name as 'class_name',
+                            Classrooms.Number AS 'classroom',
+                            Teachers.First_Name AS 'first_name',
+                            Teachers.Second_Name AS 'second_name',
+                            Teachers.Middle_Name AS 'middle_name',
+                            Class_Type.Name AS 'type'
+
+                        FROM
+                            List_Of_Classes,
+                            Group_Classes,
+                            Groups,
+                            Classes,
+                            Week,
+                            Day_Of_Week,
+                            Teachers,
+                            Classes_Time,
+                            Classrooms,
+                            Class_Type
+
+
+                        WHERE 
+                            List_Of_Classes.ID_Class = Group_Classes.ID
+                            AND
+                            Group_Classes.ID_Group = Groups.ID
+                            AND
+                            Group_Classes.ID_Class = Classes.ID
+                            and
+                            List_Of_Classes.ID_Week = Week.ID 
+                            AND
+                            List_Of_Classes.ID_Day_Of_Week = Day_Of_Week.ID 
+                            AND 
+                            List_Of_Classes.ID_Classes_Time = Classes_Time.ID 
+                            AND 
+                            List_Of_Classes.ID_Classroom = Classrooms.Number 
+                            AND 
+                            List_Of_Classes.ID_Class = Classes.ID 
+                            AND 
+                            List_Of_Classes.ID_Type = Class_Type.ID
+                            AND
+                            Classes.ID_Teacher = Teachers.ID
+                            AND
+                            Day_Of_Week.ID = $i
+                            AND
+                            Classes_Time.ID = $j
+                            AND
+                            Week.Week = '$week'
+                            AND
+                            Groups.ID = $group_id
+                            ";
+                    $result = mysqli_query($link, $sql_classes_new) or die("Ошибка " . mysqli_error($link));
                     if ($result) {
                         // print_r($result);
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result)) {
                                 $fio = $row['second_name']
-                                        . ' ' .
-                                        mb_substr($row['first_name'], 0, 1 - mb_strlen($row['first_name']))
-                                        . '.' .
-                                        mb_substr($row['middle_name'], 0, 1 - mb_strlen($row['middle_name']))
-                                        . '.';
+                                    . ' ' .
+                                    mb_substr($row['first_name'], 0, 1 - mb_strlen($row['first_name']))
+                                    . '.' .
+                                    mb_substr($row['middle_name'], 0, 1 - mb_strlen($row['middle_name']))
+                                    . '.';
                     ?>
-                                <div class='class class-<?= $row['id'] ?>'>
-                                    <?= $row['name_of_class'], ' ', $row['type'], ' ', $row['classroom'], ' ', $fio?>
+                                <div class='class class-<?= $row['class_id'] ?>'>
+                                    <?= $row['class_name'], "    ", $row['type'], "    ", $row['classroom'], "    ", $fio ?>
                                     <div class='buttons-area'>
                                         <button type='button' class="btn-edit">Изменить</button>
                                         <button type='button' class="btn-del">Удалить</button>
@@ -98,7 +157,7 @@ for ($i = 1; $i < 7; $i++) { ?>
                                     <div class="editable-select">
                                         <select class="select-name">
                                             <?php
-                                            $query_name = "SELECT Classes.ID,Classes.Name,Teachers.Second_Name,Teachers.First_Name,Teachers.Middle_Name FROM Classes,Teachers WHERE Classes.ID_Teacher = Teachers.ID";
+                                            $query_name = "SELECT Classes.ID, Classes.Name, Teachers.First_Name,Teachers.Middle_Name,Teachers.Second_Name FROM `Group_Classes`,Classes,Groups,Teachers WHERE Group_Classes.ID_Group = Groups.id and Classes.ID = Group_Classes.ID_Class AND Groups.ID = $group_id and Classes.ID_Teacher = Teachers.ID";
                                             $result_name = mysqli_query($link, $query_name) or die("Ошибка " . mysqli_error($link));
                                             if ($result_name) {
                                                 while ($row = mysqli_fetch_array($result_name)) {
@@ -156,7 +215,7 @@ for ($i = 1; $i < 7; $i++) { ?>
                     <div class="add-select">
                         <select class="select-name">
                             <?php
-                            $query_name = "SELECT Classes.ID,Classes.Name,Teachers.Second_Name,Teachers.First_Name,Teachers.Middle_Name FROM Classes,Teachers WHERE Classes.ID_Teacher = Teachers.ID";
+                            $query_name = "SELECT Classes.ID, Classes.Name, Teachers.First_Name,Teachers.Middle_Name,Teachers.Second_Name FROM `Group_Classes`,Classes,Groups,Teachers WHERE Group_Classes.ID_Group = Groups.id and Classes.ID = Group_Classes.ID_Class AND Groups.ID = $group_id and Classes.ID_Teacher = Teachers.ID";
                             $result_name = mysqli_query($link, $query_name) or die("Ошибка " . mysqli_error($link));
                             if ($result_name) {
                                 while ($row = mysqli_fetch_array($result_name)) {

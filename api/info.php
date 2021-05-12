@@ -4,6 +4,7 @@ $day = $_POST['number_day']; // день недели
 $week = $_POST['week']; // неделя
 $group_id = $_POST['group']; // группа
 
+// запрос к списку пар
 
 $sql_classes_new =
     "SELECT
@@ -53,45 +54,6 @@ $sql_classes_new =
         List_Of_Classes.ID_Type = Class_Type.ID
         AND
         Classes.ID_Teacher = Teachers.ID";
-// запрос к списку пар
-$sql_classes_selector =
-    "SELECT
-            WEEK.Week AS 'week',
-            Groups.Name AS 'group',
-            Day_Of_Week.Name AS 'day_of_week',
-            Classes_Time.Time AS 'time',
-            Classrooms.Number AS 'classroom',
-            Classes.Name AS 'name_of_class',
-            Class_Type.Name AS 'type',
-            Teachers.First_Name AS 'first_name',
-            Teachers.Second_Name AS 'second_name',
-            Teachers.Middle_Name AS 'middle_name'
-        FROM
-            List_Of_Classes,
-            WEEK,
-            Day_Of_Week,
-            Classes_Time,
-            Classrooms,
-            Classes,
-            Class_Type,
-            Groups,
-            Teachers
-        WHERE
-            List_Of_Classes.ID_Week = Week.ID 
-            AND
-            List_Of_Classes.ID_Day_Of_Week = Day_Of_Week.ID 
-            AND 
-            List_Of_Classes.ID_Classes_Time = Classes_Time.ID 
-            AND 
-            List_Of_Classes.ID_Classroom = Classrooms.Number 
-            AND 
-            List_Of_Classes.ID_Class = Classes.ID 
-            AND 
-            List_Of_Classes.ID_Type = Class_Type.ID
-            AND
-            List_Of_Classes.ID_Group = Groups.ID
-            AND
-            Classes.ID_Teacher = Teachers.ID";
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php';
 
