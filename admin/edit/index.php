@@ -1,3 +1,9 @@
+<style>
+	<?php include $_SERVER['DOCUMENT_ROOT'] .'/style.css'; ?>
+</style>
+<script src="../../jquery.js"></script>
+
+
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';
 	require '../auth.php';
@@ -10,7 +16,6 @@
 		require_once 'forms/add_lessons.php';
 		exit;
 	}
-
 ?>
 
 

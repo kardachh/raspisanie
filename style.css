@@ -129,3 +129,30 @@ a .btn-text{
     text-decoration: none;
     color: black;
 }
+
+.group{
+    margin: 10px 0;
+    padding: 10px;
+    width: 550px;
+    border: #000 1px solid;
+}
+
+.btn-cont{
+    display: none;
+}
+
+#name-new-group input{
+    width: 300px;
+}
+
+#cont-add-group{
+    display: none;
+}
+
+.edit-cont{
+    display: none;
+}
+
+.edit-input-name{
+    width: 300px;
+}

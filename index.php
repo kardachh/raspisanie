@@ -15,7 +15,6 @@
     </a>
 </div>
 
-
 <?php
     session_start();
     session_destroy();
