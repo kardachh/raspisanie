@@ -137,6 +137,21 @@ a .btn-text{
     border: #000 1px solid;
 }
 
+.class-edit{
+    margin: 10px 0;
+    padding: 10px;
+    width: 550px;
+    border: #000 1px solid;
+}
+
+.teacher{
+    margin: 10px 0;
+    padding: 10px;
+    width: 550px;
+    border: #000 1px solid;
+    position: relative;
+}
+
 .btn-cont{
     display: none;
 }
@@ -149,10 +164,28 @@ a .btn-text{
     display: none;
 }
 
+#cont-add-class{
+    display: none;
+}
+
+#cont-add-teacher{
+    display: none;
+}
+
 .edit-cont{
     display: none;
 }
 
-.edit-input-name{
+.edit-cont div{
+    margin: 5px;
+}
+
+.teacher .edit-input-name{
     width: 300px;
+    position: absolute;
+    right: 10%;
+}
+
+#btn-save-time{
+    display: none;
 }
