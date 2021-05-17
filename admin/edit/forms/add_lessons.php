@@ -3,19 +3,49 @@
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php';
     $link = mysqli_connect($host, $user, $password, $database) or die("Ошибка " . mysqli_error($link));
-    $query = "SELECT * FROM Classes ORDER BY Name";
+    $query = "SELECT First_Name,
+    Second_Name,
+    Middle_Name,
+    Classes.ID as 'class_id', 
+    Teachers.ID as 'teacher_id',
+    Classes.Name
+    FROM Teachers,Classes 
+    WHERE Classes.ID_Teacher = Teachers.ID
+    ORDER BY Classes.Name";
+    $teachers = [];
+    $query_teachers = "SELECT * FROM Teachers ORDER BY Second_Name";
+    $result_teachers = mysqli_query($link, $query_teachers) or die("Ошибка " . mysqli_error($link));
+    if ($result_teachers){
+        while ($row = mysqli_fetch_assoc($result_teachers)){
+            $teachers[$row['ID']] = $row;
+        }
+    }
     $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
     if ($result) {
         while ($row = mysqli_fetch_array($result)) { ?>
             <div class="class-edit">
-                <div class="class-name class-<?=$row['ID']?>"> <?= $row['Name'] ?></div>
+                <div class="class-name class-<?=$row['class_id']?>"> <?= $row['Name'] ?></div>
                 <div class="btn-cont">
                     <input class="btn-edit-class" type="button" value="Изменить">
                     <input class="btn-del-class" type="button" value="Удалить">
                 </div>
                 <div class = "edit-cont">
-                    Новое наименование:
-                    <input class = "edit-input-name" type="text" placeholder="Новое наименование">
+                    <div>
+                        Новое наименование:
+                        <input class = "edit-input-name" type="text" placeholder="Новое наименование" value="<?=$row['Name']?>">
+                    </div>
+                    <div>
+                        Преподаватель:
+                        <select class = "edit-teacher-select">
+                            <?php
+                            foreach ($teachers as $value) {
+                                ?>
+                                <option value="<?=$value['ID']?>"><?=$value['Second_Name']." ".$value['First_Name']." ".$value['Middle_Name']?></option>
+                            <?php
+                            }
+                        ?>
+                        </select>
+                    </div>
                     <input class = "btn-save-class" type="button" value="Сохранить">
                 </div>
             </div>
@@ -35,6 +65,22 @@
         </div>
         <div>
             <input id="name-new-class-input" type="text" placeholder="Введите наименование дисциплины" required>
+        </div>
+    </div>
+    <div id="teacher-new-class">
+        <div id="teacher-new-class-text">
+            Преподаватель
+        </div>
+        <div>
+            <select id ="teacher-new-class-select">
+                <?php
+                foreach ($teachers as $value) {
+                    ?>
+                    <option value="<?=$value['ID']?>"><?=$value['Second_Name']." ".$value['First_Name']." ".$value['Middle_Name']?></option>
+                <?php
+                }
+            ?>
+            </select>
         </div>
     </div>
     <br>
@@ -70,11 +116,13 @@
     });
 
     $('#enter-new-class-btn').click(function() {
-        $.ajax({
+        if ($("#name-new-class-input").val()!=''){
+            $.ajax({
             type: "post",
             url: url,
             data: {
                 type: 'add',
+                teacher_id: $('#teacher-new-class-select').val(),
                 class: $('#name-new-class-input').val()
             },
             success: function(response) {
@@ -85,6 +133,8 @@
                 console.log(response);
             }
         });
+        }
+        else alert("Введите наименование дисциплины");
     });
 
     $('.btn-save-class').click(function() {
@@ -94,9 +144,9 @@
                 url: url,
                 data: {
                     type: 'edit',
-                    new_class_name:$(this).parent().find('.edit-input-name').val(),
+                    class:$(this).parent().find('.edit-input-name').val(),
+                    teacher_id: $(this).parent().find('.edit-teacher-select').val(),
                     class_id:$(this).parent().parent().find('.class-name').attr('class').slice(17),
-                    class: $(this).parent().parent().find('.class-name').text()
                 },
                 success: function(response) {
                     console.log(response);
@@ -106,13 +156,11 @@
                     console.log(response);
                 }
             });
-        } else alert("Введите наименование группы");
-        
-        
+        } else alert("Введите наименование дисциплины");       
     });
 
     $('.btn-del-class').click(function() {
-        let confirm_del = confirm("Вы уверены, что хотите удалить предмет '"+$(this).parent().parent().find('.class-name').text()+"?");
+        let confirm_del = confirm("Вы уверены, что хотите удалить дисциплину "+$(this).parent().parent().find('.class-name').text()+"?");
         console.log(confirm_del);
         if (confirm_del){
             $.ajax({
@@ -121,7 +169,6 @@
                 data: {
                     type: 'del',
                     class_id:$(this).parent().parent().find('.class-name').attr('class').slice(17),
-                    class: $(this).parent().parent().find('.class-name').text()
                 },
                 success: function(response) {
                     console.log(response);

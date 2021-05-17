@@ -116,7 +116,7 @@
     });
 
     $('.btn-del-group').click(function() {
-        let confirm_del = confirm("Вы уверены, что хотите удалить группу"+$(this).parent().parent().find('.group-name').text()+"?");
+        let confirm_del = confirm("Вы уверены, что хотите удалить группу "+$(this).parent().parent().find('.group-name').text()+"?");
         console.log(confirm_del);
         if (confirm_del){
             $.ajax({

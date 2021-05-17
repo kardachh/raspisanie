@@ -26,7 +26,8 @@
 	}
 ?>
 
-
+<br>
+<br>
 <form method="post">
 	<input type="submit" name='edit_groups' value="Группы">
 	<input type="submit" name='edit_lessons' value="Пары">
