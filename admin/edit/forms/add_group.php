@@ -70,7 +70,8 @@
     });
 
     $('#enter-new-group-btn').click(function() {
-        $.ajax({
+        if ($('#name-new-group-input').val()!=''){
+            $.ajax({
             type: "post",
             url: url,
             data: {
@@ -85,6 +86,9 @@
                 console.log(response);
             }
         });
+        }
+        else alert('Введите наименование группы');
+        
     });
 
     $('.btn-save-group').click(function() {

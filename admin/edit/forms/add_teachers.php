@@ -16,15 +16,15 @@
                 <div class = "edit-cont">
                     <div class = "edit-cont-second-name">
                         Фамилия:
-                        <input class = "edit-input-name" type="text" placeholder="Фамилия">
+                        <input class = "edit-input-name edit-input-second-name" type="text" placeholder="Фамилия" value="<?=$row['Second_Name']?>">
                     </div>
                     <div class = "edit-cont-first-name">
                         Имя:
-                        <input class = "edit-input-name edit-input-first-name" type="text" placeholder="Имя">
+                        <input class = "edit-input-name edit-input-first-name" type="text" placeholder="Имя" value="<?=$row['First_Name']?>">
                     </div>
                     <div class = "edit-cont-middle-name">
                         Отчество:
-                        <input class = "edit-input-name" type="text" placeholder="Отчество">
+                        <input class = "edit-input-name edit-input-middle-name" type="text" placeholder="Отчество" value="<?=$row['Middle_Name']?>">
                     </div>
                     <input class = "btn-save-teacher" type="button" value="Сохранить">
                 </div>
@@ -36,16 +36,22 @@
     ?>
 </div>
 
-<input id="btn-add-teacher" type="button" value="Добавить группу">
+<input id="btn-add-teacher" type="button" value="Добавить преподавателя">
 <br>
 <br>
 <div id="cont-add-teacher">
     <div id="name-new-teacher">
-        <div id="name-new-teacher-text">
-            Наименование группы
+    <div class = "add-cont-second-name">
+            Фамилия:
+            <input id = "add-input-second-name" class = "add-input-name" type="text" placeholder="Фамилия">
         </div>
-        <div>
-            <input id="name-new-teacher-input" type="text" placeholder="Введите наименование группы" required>
+        <div class = "add-cont-first-name">
+            Имя:
+            <input id = "add-input-first-name" class = "add-input-name" type="text" placeholder="Имя">
+        </div>
+        <div class = "add-cont-middle-name">
+            Отчество:
+            <input id = "add-input-middle-name" class = "add-input-name" type="text" placeholder="Отчество">
         </div>
     </div>
     <br>
@@ -55,7 +61,7 @@
 </div>
 
 <script>
-    url = '../../api/edit_info/group_edit.php';
+    url = '../../api/edit_info/teacher_edit.php';
 
     $(".teacher").hover(function() {
         let btn_cont = $(this).find(".btn-cont");
@@ -63,14 +69,14 @@
     }, function() {
         let btn_cont = $(this).find(".btn-cont");
         $(btn_cont).toggle(100);
-        $('.edit-cont').hide(100);
+        // $('.edit-cont').hide(100);
         $('.btn-edit-teacher').val('Изменить');
 
     });
 
     $("#btn-add-teacher").click(function() {
         $("#cont-add-teacher").toggle(200);
-        $("#btn-add-teacher").val() == 'Добавить группу' ? $("#btn-add-teacher").val('Скрыть') : $("#btn-add-teacher").val('Добавить группу');
+        $("#btn-add-teacher").val() == 'Добавить преподавателя' ? $("#btn-add-teacher").val('Скрыть') : $("#btn-add-teacher").val('Добавить преподавателя');
     });
 
     $('.btn-edit-teacher').click(function() {
@@ -81,12 +87,15 @@
     });
 
     $('#enter-new-teacher-btn').click(function() {
-        $.ajax({
+        if ($('#add-input-first-name').val()!='' && $('#add-input-second-name').val()!='' && $('#add-input-middle-name').val()!=''){
+            $.ajax({
             type: "post",
             url: url,
             data: {
                 type: 'add',
-                teacher: $('#name-new-teacher-input').val()
+                first_name: $('#add-input-first-name').val(),
+                second_name: $('#add-input-second-name').val(),
+                middle_name: $('#add-input-middle-name').val()
             },
             success: function(response) {
                 console.log(response);
@@ -96,18 +105,21 @@
                 console.log(response);
             }
         });
+        }
+        else alert('Заполните пустые поля');        
     });
 
     $('.btn-save-teacher').click(function() {
-        if ($(this).parent().find('.edit-input-name').val()!=""){
+        if ($(this).parent().find('.edit-input-first-name').val()!='' && $(this).parent().find('.edit-input-second-name').val()!='' && $(this).parent().find('.edit-input-middle-name').val()!=''){
             $.ajax({
                 type: "post",
                 url: url,
                 data: {
                     type: 'edit',
-                    new_group_name:$(this).parent().find('.edit-input-name').val(),
-                    teacher_id:$(this).parent().parent().find('.teacher-name').attr('class').slice(17),
-                    teacher: $(this).parent().parent().find('.teacher-name').text()
+                    teacher_id:$(this).parent().parent().find('.teacher-name').attr('class').slice(21),
+                    first_name: $(this).parent().find('.edit-input-first-name').val(),
+                    second_name: $(this).parent().find('.edit-input-second-name').val(),
+                    middle_name: $(this).parent().find('.edit-input-middle-name').val(),
                 },
                 success: function(response) {
                     console.log(response);
@@ -117,13 +129,13 @@
                     console.log(response);
                 }
             });
-        } else alert("Введите наименование группы");
+        } else alert("Заполните все поля");
         
         
     });
 
     $('.btn-del-teacher').click(function() {
-        let confirm_del = confirm("Вы уверены, что хотите удалить группу"+$(this).parent().parent().find('.teacher-name').text()+"?");
+        let confirm_del = confirm("Вы уверены, что хотите удалить преподавателя "+$(this).parent().parent().find('.teacher-name').text()+"?");
         console.log(confirm_del);
         if (confirm_del){
             $.ajax({
@@ -131,8 +143,7 @@
                 url: url,
                 data: {
                     type: 'del',
-                    teacher_id:$(this).parent().parent().find('.teacher-name').attr('class').slice(17),
-                    teacher: $(this).parent().parent().find('.teacher-name').text()
+                    teacher_id:$(this).parent().parent().find('.teacher-name').attr('class').slice(21),
                 },
                 success: function(response) {
                     console.log(response);

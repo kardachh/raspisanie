@@ -183,7 +183,7 @@ a .btn-text{
 .teacher .edit-input-name{
     width: 300px;
     position: absolute;
-    right: 10%;
+    left: 15%;
 }
 
 #btn-save-time{
