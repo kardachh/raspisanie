@@ -152,6 +152,13 @@ a .btn-text{
     position: relative;
 }
 
+/* .group-class{
+    margin: 10px 0;
+    padding: 10px;
+    border: #000 1px solid;
+    position: relative;
+} */
+
 .btn-cont{
     display: none;
 }
@@ -188,4 +195,27 @@ a .btn-text{
 
 #btn-save-time{
     display: none;
+}
+#col-cont select{
+    width: 100%;
+}
+.col{
+    margin: 5px;
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.selected-option{
+    text-align: center;
+}
+
+#cont-btn-find{
+    text-align: center;
+}
+
+.col .btn-cont{
+    display: block;
+    text-align: center;
+
 }

@@ -4,6 +4,7 @@
 <script src="../../jquery.js"></script>
 
 
+
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';
 	require '../auth.php';
@@ -24,6 +25,10 @@
 		require_once 'forms/add_teachers.php';
 		exit;
 	}
+	if(isset($_POST['edit_group_classes'])){
+		require_once 'forms/add_group_classes.php';
+		exit;
+	}
 ?>
 
 <br>
@@ -33,4 +38,6 @@
 	<input type="submit" name='edit_lessons' value="Пары">
 	<input type="submit" name='edit_teachers' value="Преподаватели">
 	<input type="submit" name='edit_time' value="Время">
+	<input type="submit" name='edit_group_classes' value="Группировка дисциплин">
 </form>
+
