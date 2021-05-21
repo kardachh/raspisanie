@@ -151,6 +151,12 @@ a .btn-text{
     border: #000 1px solid;
     position: relative;
 }
+.classroom{
+    margin: 10px 0;
+    padding: 10px;
+    width: 550px;
+    border: #000 1px solid;
+}
 
 /* .group-class{
     margin: 10px 0;
@@ -176,6 +182,10 @@ a .btn-text{
 }
 
 #cont-add-teacher{
+    display: none;
+}
+
+#cont-add-classroom{
     display: none;
 }
 

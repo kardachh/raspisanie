@@ -29,6 +29,10 @@
 		require_once 'forms/add_group_classes.php';
 		exit;
 	}
+	if(isset($_POST['edit_classrooms'])){
+		require_once 'forms/add_classrooms.php';
+		exit;
+	}
 ?>
 
 <br>
@@ -36,6 +40,7 @@
 <form method="post">
 	<input type="submit" name='edit_groups' value="Группы">
 	<input type="submit" name='edit_lessons' value="Пары">
+	<input type="submit" name='edit_classrooms' value="Кабинеты">
 	<input type="submit" name='edit_teachers' value="Преподаватели">
 	<input type="submit" name='edit_time' value="Время">
 	<input type="submit" name='edit_group_classes' value="Группировка дисциплин">

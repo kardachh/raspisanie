@@ -88,7 +88,7 @@ require_once '../button_back.php';
 			},
 			dataType: "json",
 			success: function(response) {
-				// console.log(response);
+				console.log(response);
 				time.innerHTML = response.time;
 				name.innerHTML = response.name;
 				type.innerHTML = response.type;

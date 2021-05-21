@@ -60,8 +60,6 @@ for ($i = 1; $i < 7; $i++) { ?>
                                     AND 
                                     List_Of_Classes.ID_Classroom = Classrooms.Number 
                                     AND 
-                                    List_Of_Classes.ID_Class = Classes.ID 
-                                    AND 
                                     List_Of_Classes.ID_Type = Class_Type.ID
                                     AND
                                     List_Of_Classes.ID_Group = Groups.ID
@@ -120,8 +118,6 @@ for ($i = 1; $i < 7; $i++) { ?>
                             List_Of_Classes.ID_Classes_Time = Classes_Time.ID 
                             AND 
                             List_Of_Classes.ID_Classroom = Classrooms.Number 
-                            AND 
-                            List_Of_Classes.ID_Class = Classes.ID 
                             AND 
                             List_Of_Classes.ID_Type = Class_Type.ID
                             AND

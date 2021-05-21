@@ -49,8 +49,6 @@ $sql_classes_new =
         AND 
         List_Of_Classes.ID_Classroom = Classrooms.Number 
         AND 
-        List_Of_Classes.ID_Class = Classes.ID 
-        AND 
         List_Of_Classes.ID_Type = Class_Type.ID
         AND
         Classes.ID_Teacher = Teachers.ID";
