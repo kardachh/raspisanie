@@ -97,17 +97,7 @@ select{
     margin: 0 auto;
 }
 
-@media screen and (max-width: 768px) {
-    table{
-        font-size: 3vw;
-    }
-    td{
-        padding: 5px;
-    }
-    a{
-        font-size: larger;
-    }
-}
+
 
 /* MENU */
 
@@ -228,4 +218,19 @@ a .btn-text{
     display: block;
     text-align: center;
 
+}
+@media screen and (max-width: 768px) {
+    table{
+        font-size: 3vw;
+    }
+    td{
+        padding: 5px;
+    }
+    a{
+        font-size: larger;
+    }
+
+    #menu-cont{
+        width: 85%;     
+    }
 }
