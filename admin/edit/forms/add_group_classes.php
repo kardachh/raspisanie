@@ -119,11 +119,20 @@
                         $('.col-3').show(400);
                         $('.btn-del').hide()
                         $(this).val('Отмена');
+                        $('#select-group').prop('disabled', true);
+                        $('#btn-find').prop('disabled', true);
+                        $('.group-class').prop('disabled', true);
+                        
                     }
                     else{
                         $('.col-3').hide(400);
                         $('.btn-del').show()
                         $('.btn-add-to-group').val('Добавить пары');
+                        $('#select-group').prop('disabled', false);
+                        $('#btn-find').prop('disabled', false);
+                        $('.group-class').prop('disabled', false);
+
+
                     }
                 });
             },
@@ -135,26 +144,32 @@
     });
     
     $('#btn-add').click(function () {
-                
-                let group_id = $('#select-group').val();
-                let class_id = $('#select-class').val();
-                if (group_id){
-                    $.ajax({
-                        type: "post",
-                        url: "../../api/edit_info/group_classes_edit.php",
-                        data:{
-                            type:'add',
-                            group_id:group_id,
-                            class_id:class_id
-                        },
-                        success: function (response) {
-                            console.log(response);
-                            $('#btn-find').click();
-                        },
-                        error:function(){
-                            console.log(response);
-                        }
-                    });
-                }
-                });  
+        if ($('#select-class').val()){
+            $('.col-3').hide(400)
+            let group_id = $('#select-group').val();
+            let class_id = $('#select-class').val();
+            if (group_id){
+                $.ajax({
+                    type: "post",
+                    url: "../../api/edit_info/group_classes_edit.php",
+                    data:{
+                        type:'add',
+                        group_id:group_id,
+                        class_id:class_id
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        $('#select-group').prop('disabled', false);
+                        $('#btn-find').prop('disabled', false);
+                        $('.col-2').prop('disabled', false);
+
+                        $('#btn-find').click();
+                    },
+                    error:function(){
+                        console.log(response);
+                    }
+                });
+            }
+            }
+        });
 </script>
