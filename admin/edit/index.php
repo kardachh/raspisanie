@@ -7,8 +7,8 @@
 
 
 <?php
-	require '../auth.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] .'/admin'.'/auth.php';
 
 	if(isset($_POST['edit_groups'])){
 		require_once 'forms/add_group.php';

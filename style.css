@@ -134,6 +134,7 @@ select{
     text-align: center;
     position: absolute;
     right: 50px;
+    z-index: 1000;
 }
 .btn{
     background-color: rgb(255, 255, 255);
@@ -276,5 +277,21 @@ a .btn-text{
 
     #menu-cont{
         width: 85%;     
+    }
+
+    .single-btn .btn{
+        width: 10%;
+        font-size: small;
+        text-align: center;
+        position: absolute;
+        right: 0;
+    }
+
+    #auth{
+        width: 90vw;
+    }
+    
+    #auth-text-cont{
+        
     }
 }

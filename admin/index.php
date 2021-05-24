@@ -2,8 +2,9 @@
 	<?php include '../style.css'; ?>
 </style>
 <?php
-    require 'auth.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] .'/admin'.'/auth.php';
+
 ?>
 
 <br>
