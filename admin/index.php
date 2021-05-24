@@ -3,7 +3,7 @@
 </style>
 <?php
     require 'auth.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';`
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';
 ?>
 
 <br>

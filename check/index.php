@@ -37,7 +37,7 @@ require_once '../button_back.php';
 		<input type ="button" value = "Текущая неделя"onclick="swap_to_current_week()">
 		<input type ="button" value = "Следующая неделя"onclick="swap_to_next_week()">
 	</form> <!-- загрузка групп из БД -->
-	<button onclick="exportTableToCSV('members.csv')">Export HTML Table To CSV File</button>
+	<button id='csv-save'>CSV File</button>
 
 </div>
 
@@ -82,8 +82,8 @@ require_once '../button_back.php';
 			var row = [], cols = rows[i].querySelectorAll("td, th");
 			for (var j = 0; j < cols.length; j++){
 				let str = (cols[j].innerText).replace('\n' , "\n\r")
-				// row.push(str);
-				console.log(str);
+				row.push(str);
+				// console.log(str);
 			}
 			
 			csv.push(row.join(","));        
@@ -93,6 +93,10 @@ require_once '../button_back.php';
 		downloadCSV(csv.join("\n"), filename);
 		// console.log(csv);
 	}
+
+	$('#csv-save').click(function () { 
+		exportTableToCSV($('#week-select').val()+' '+$('#name_of_group option:selected').text())
+	});
 
 	let next_week = moment().add(1,'weeks').format('W');
 	let current_week = moment().format('W');
