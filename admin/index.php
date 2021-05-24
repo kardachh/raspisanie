@@ -1,13 +1,26 @@
+<style>
+	<?php include '../style.css'; ?>
+</style>
 <?php
-    $parent_dir = '../index.php';
-?>
-<a href='<?= $parent_dir;?>'>Назад</a>
-<?php
-    echo '<br>';
     require 'auth.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';`
 ?>
+
 <br>
-<a href='change_classes_list_new/index.php'>Добавление расписания</a>
-<br>
-<a href='edit/index.php'>Изменение параметров</a>
+<div id = "menu-cont">
+    <a href='change_classes_list_new/'>
+        <div class = "btn">
+            <div class = "btn-text">
+                Добавление расписания
+            </div>
+        </div>
+    </a>
+    <a href='edit/'>
+        <div class = "btn">
+            <div class = "btn-text">
+                Изменение параметров
+            </div>
+        </div>
+    </a>
+</div>
 

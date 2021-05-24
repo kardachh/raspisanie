@@ -1,6 +1,6 @@
 <?php
-  require_once $_SERVER['DOCUMENT_ROOT'].'/button_back.php';
   require '../auth.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/button_back.php';
 ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/connection.php'; ?>
 <style>

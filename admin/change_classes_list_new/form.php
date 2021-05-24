@@ -267,6 +267,7 @@ mysqli_close($link);
         let parent = $(e.target).parent()[0];
         let field = $(parent).find('.add-select');
         $(field).toggle(300);
+        $(this).text() == 'Добавить' ? $(this).text('Отмена') : $(this).text('Добавить');
     });
 
     $('.btn-edit').click(function(e) {

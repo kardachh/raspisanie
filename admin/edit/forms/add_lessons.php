@@ -1,4 +1,4 @@
-<h1>Пары</h1>
+<h1>Дисциплины</h1>
 <div id="list_of_classes">
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php';
