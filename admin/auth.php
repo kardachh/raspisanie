@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php'; // подключа�
 // подключаемся к серверу
 $link = mysqli_connect($host, $user, $password, $database) or die("Ошибка БД");
 
-if (isset($_POST['auth_name']) or isset($_SESSION['user_id'])) {
+if (isset($_POST['auth_name'])) {
 	$name = mysqli_real_escape_string($link, $_POST['auth_name']);
 	$pass = mysqli_real_escape_string($link, $_POST['auth_pass']);
 	$query = "SELECT * FROM users WHERE name='$name' AND pass='$pass'";
@@ -26,6 +26,7 @@ if (isset($_POST['auth_name']) or isset($_SESSION['user_id'])) {
 // 	exit;
 // }
 session_start();
+echo isset($_SESSION['user_id']);
 if (isset($_SESSION['user_id']) and $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) return;
 else {
 ?>

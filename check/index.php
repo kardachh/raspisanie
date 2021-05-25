@@ -1,9 +1,10 @@
-<?php
-require_once '../button_back.php';
-?>
 <style>
 	<?php include '../style.css'; ?>
 </style>
+<div id = all>
+<?php
+require_once '../button_back.php';
+?>
 <div id='main-text'>
 	<h1>Расписание</h1>
 </div>
@@ -42,6 +43,8 @@ require_once '../button_back.php';
 </div>
 
 <div id='table-space'></div>
+</div>
+
 
 <script src='../../moment.js'></script>
 <script src='../../jquery.js'></script>
@@ -81,7 +84,7 @@ require_once '../button_back.php';
 		for (var i = 0; i < rows.length; i++) {
 			var row = [], cols = rows[i].querySelectorAll("td, th");
 			for (var j = 0; j < cols.length; j++){
-				let str = (cols[j].innerText).replace('\n' , "\n\r")
+				let str = (cols[j].innerText).replace('\n' , "/")
 				row.push(str);
 				// console.log(str);
 			}

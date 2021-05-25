@@ -264,13 +264,30 @@ a .btn-text{
     text-align: center;
 
 }
+#all{
+    margin: 0 auto;
+    width: 650px;
+    position: relative;
+}
+
+#all .btn{
+    right: 0;
+}
 @media screen and (max-width: 768px) {
+    #all{
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+    }
+
     table{
         font-size: 3vw;
     }
+
     td{
         padding: 5px;
     }
+
     a{
         font-size: larger;
     }

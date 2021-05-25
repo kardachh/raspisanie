@@ -1,9 +1,12 @@
-<style>
+<!-- <style>
 	<?php include '../style.css'; ?>
-</style>
+</style> -->
+<head>
+    <link rel="stylesheet" href="../style.css">
+</head>
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] .'/admin'.'/auth.php';
+    // require_once $_SERVER['DOCUMENT_ROOT'] .'/admin'.'/auth.php';
 
 ?>
 
@@ -24,4 +27,3 @@
         </div>
     </a>
 </div>
-
