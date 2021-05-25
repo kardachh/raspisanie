@@ -223,6 +223,7 @@ require_once '../button_back.php';
 
 	$('#add-btn').click(function() {
 		tableCreate();
+		document.title = 'Расписание '+$('#name_of_group option:selected').text();
 	});
 	
 	function swap_to_current_week() {
@@ -236,7 +237,7 @@ require_once '../button_back.php';
 	}
 
 	tableCreate();
-
+	document.title = 'Расписание '+$('#name_of_group option:selected').text();
 
 	$('#week-select').on('change', function() {
 		$('#add-btn').click();

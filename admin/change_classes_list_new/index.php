@@ -1,13 +1,16 @@
+<head>
+    <title>Изменение расписания</title>
+	<link href="/../style.css" type="text/css" rel="stylesheet">
+</head>
 <?php
-  require_once $_SERVER['DOCUMENT_ROOT'].'/button_back.php';
-  require '../auth.php';
+  require_once $_SERVER['DOCUMENT_ROOT'] .'/admin'.'/auth.php';
 ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/connection.php'; ?>
-<style>
-	<?php include '../../style.css'; ?>
-</style>
+<div id = 'all' style='width:750px'>
+<?php require_once $_SERVER['DOCUMENT_ROOT'].'/button_back.php'; ?>
+
 <div id='main-text'>
-	<h1>Расписание</h1>
+	<h1>Изменение расписания</h1>
 </div>
 <div id='select-cont'>
 	<form method='post'>
@@ -43,6 +46,7 @@
 	<?php 
         // require 'form.php';
     ?>
+</div>
 </div>
 <script src='../../moment.js'></script>
 <script src='../../jquery.js'></script>

@@ -199,15 +199,15 @@ for ($i = 1; $i < 7; $i++) { ?>
                             }
                         } else {
                             ?>
-                            <div class='class'>
-                                Пусто
+                            <div >
+                                Нет пар
                             </div>
                     <?php
                         };
                     }
                     ?>
-                    <br>
-                    <button type='button' class="btn-add">Добавить</button>
+                    <!-- <br> -->
+                    <button type='button' class="btn-add btn">+</button>
                     <div class="add-select">
                         <select class="select-name">
                             <?php
@@ -248,7 +248,7 @@ for ($i = 1; $i < 7; $i++) { ?>
                             }
                             ?>
                         </select>
-                        <button type="button" class="btn-submit">Добавить</button>
+                        <button type="button" class="btn-submit btn">Добавить</button>
                     </div>
                 </div>
             </form>
@@ -267,7 +267,7 @@ mysqli_close($link);
         let parent = $(e.target).parent()[0];
         let field = $(parent).find('.add-select');
         $(field).toggle(300);
-        $(this).text() == 'Добавить' ? $(this).text('Отмена') : $(this).text('Добавить');
+        $(this).text() == '+' ? $(this).text('Отмена') : $(this).text('+');
     });
 
     $('.btn-edit').click(function(e) {

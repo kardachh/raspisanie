@@ -1,13 +1,11 @@
-<!-- <style>
-	<?php include '../style.css'; ?>
-</style> -->
 <head>
-    <link rel="stylesheet" href="../style.css">
+    <title>Авторизация</title>
+    <link href="../style.css" type="text/css" rel="stylesheet">
 </head>
+
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';
-    // require_once $_SERVER['DOCUMENT_ROOT'] .'/admin'.'/auth.php';
-
+    require_once $_SERVER['DOCUMENT_ROOT'] .'/admin'.'/auth.php';
 ?>
 
 <br>

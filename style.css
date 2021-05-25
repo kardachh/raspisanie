@@ -29,9 +29,9 @@ select{
 .day{
     min-height: 48px;
     padding: 10px;
-    margin: 10px;
+    margin: 25px 0;
     background-color: rgba(228, 228, 228, 0.247);
-    border: rgb(0, 0, 0) solid 1px;
+    border: rgb(0, 0, 0) 2px dotted;
 }
 .class_select,.type_select,.classroom_select{
     width: 100px;
@@ -55,6 +55,7 @@ select{
     /* border: #000 solid 1px; */
     display: inline-block;
     margin: 4px 0;
+    text-decoration: underline;
 }
 
 .class-cont{
@@ -68,6 +69,7 @@ select{
     margin: 1px 0;
     padding: 5px;
     border: black solid 1px;
+    border-radius: 0.5em;
 }
 
 .class-cont .class:hover{
@@ -95,6 +97,7 @@ select{
     width: fit-content;
     padding: 5px;
     margin: 0 auto;
+    font-size: 24px;
 }
 
 
@@ -129,7 +132,7 @@ select{
     margin-bottom: 10px;
 }
 
-.single-btn .btn{
+.btn-back .btn{
     width: 100px;
     text-align: center;
     position: absolute;
@@ -143,6 +146,7 @@ select{
     border: #000 1px solid;
     margin: 10px 0;
     cursor: pointer;
+    min-width: 27px;
 }
 a .btn-text{
     /* text-decoration: none; */
@@ -273,6 +277,7 @@ a .btn-text{
 #all .btn{
     right: 0;
 }
+
 @media screen and (max-width: 768px) {
     #all{
         margin: 0 auto;
@@ -296,7 +301,7 @@ a .btn-text{
         width: 85%;     
     }
 
-    .single-btn .btn{
+    .btn-back .btn{
         width: 10%;
         font-size: small;
         text-align: center;
@@ -306,9 +311,5 @@ a .btn-text{
 
     #auth{
         width: 90vw;
-    }
-    
-    #auth-text-cont{
-        
     }
 }

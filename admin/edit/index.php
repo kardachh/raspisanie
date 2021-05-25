@@ -1,6 +1,7 @@
-<style>
-	<?php include $_SERVER['DOCUMENT_ROOT'] .'/style.css'; ?>
-</style>
+<head>
+    <title>Меню администратора</title>
+    <link href="/../style.css" type="text/css" rel="stylesheet">
+</head>
 <script src="../../jquery.js"></script>
 
 
