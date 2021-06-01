@@ -1,3 +1,6 @@
+<div id = 'all'>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
+
 <h1>Группы</h1>
 <div id="list_of_groups">
     <?php
@@ -42,6 +45,7 @@
         <input id="enter-new-group-btn" type="submit" value="Добавить">
     </div>
 </div>
+</div>
 
 <script>
     url = '../../api/edit_info/group_edit.php';
@@ -59,14 +63,14 @@
 
     $("#btn-add-group").click(function() {
         $("#cont-add-group").toggle(200);
-        $("#btn-add-group").val() == 'Добавить группу' ? $("#btn-add-group").val('Скрыть') : $("#btn-add-group").val('Добавить группу');
+        $("#btn-add-group").val() == 'Добавить группу' ? $("#btn-add-group").val('Отмена') : $("#btn-add-group").val('Добавить группу');
     });
 
     $('.btn-edit-group').click(function() {
         let cont_edit = $(this).parent().parent().find('.edit-cont');
 
         $(cont_edit).toggle(200);
-        $(this).val() == 'Изменить' ? $(this).val('Скрыть') : $(this).val('Изменить');
+        $(this).val() == 'Изменить' ? $(this).val('Отмена') : $(this).val('Изменить');
     });
 
     $('#enter-new-group-btn').click(function() {

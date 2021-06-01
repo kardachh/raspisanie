@@ -1,48 +1,48 @@
 <style>
 	<?php include '../style.css'; ?>
 </style>
-<div id = all>
-<?php
-require_once '../button_back.php';
-?>
-<div id='main-text'>
-	<h1>Расписание</h1>
-</div>
-<div id=main-cont>
-	<form method='post'>
-		<p>
-			<select id='name_of_group'>
-				<?php
-				require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php'; // подключаем скрипт
+<div id=all>
+	<?php
+	require_once '../button_back.php';
+	?>
+	<div id='main-text'>
+		<h1>Расписание</h1>
+	</div>
+	<div id=main-cont>
+		<form method='post'>
+			<p>
+				<select id='name_of_group'>
+					<?php
+					require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php'; // подключаем скрипт
 
-				// подключаемся к серверу
-				$link = mysqli_connect($host, $user, $password, $database)
-					or die("Ошибка " . mysqli_error($link));
+					// подключаемся к серверу
+					$link = mysqli_connect($host, $user, $password, $database)
+						or die("Ошибка " . mysqli_error($link));
 
-				// выполняем операции с базой данных
-				$query = "SELECT * FROM Groups ORDER BY Name";
-				$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-				if ($result) {
-					while ($row = mysqli_fetch_array($result)) {
-						echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
+					// выполняем операции с базой данных
+					$query = "SELECT * FROM Groups ORDER BY Name";
+					$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+					if ($result) {
+						while ($row = mysqli_fetch_array($result)) {
+							echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
+						}
 					}
-				}
-				// закрываем подключение
-				mysqli_close($link);
-				?>
-			</select>
-		</p>
-		<!-- week выводится в формате "2021-W15" -->
-		<input id='week-select' type="input" placeholder="Выберите неделю" required style="display:none">
-		<input id='add-btn' type='button' value="Добавить" style="display:none">
-		<input type ="button" value = "Текущая неделя"onclick="swap_to_current_week()">
-		<input type ="button" value = "Следующая неделя"onclick="swap_to_next_week()">
-	</form> <!-- загрузка групп из БД -->
-	<button id='csv-save'>CSV File</button>
+					// закрываем подключение
+					mysqli_close($link);
+					?>
+				</select>
+			</p>
+			<!-- week выводится в формате "2021-W15" -->
+			<input id='week-select' type="input" placeholder="Выберите неделю" required style="display:none">
+			<input id='add-btn' type='button' value="Добавить" style="display:none">
+			<input type="button" value="Текущая неделя" onclick="swap_to_current_week()">
+			<input type="button" value="Следующая неделя" onclick="swap_to_next_week()">
+		</form> <!-- загрузка групп из БД -->
+		<button id='csv-save' class = 'btn'>CSV File</button>
+		<a href="#" id="test" onClick="javascript:fnExcelReport();" class = 'btn'>Excel</a>
 
-</div>
-
-<div id='table-space'></div>
+	</div>
+	<center><div id='table-space'></div></center>
 </div>
 
 
@@ -50,13 +50,14 @@ require_once '../button_back.php';
 <script src='../../jquery.js'></script>
 <!-- <script src = 'script_add_rasp.js'></script> -->
 <script>
-
 	function downloadCSV(csv, filename) {
 		var csvFile;
 		var downloadLink;
 
 		// CSV file
-		csvFile = new Blob([csv], {type: "text/csv"});
+		csvFile = new Blob([csv], {
+			type: "text/csv"
+		});
 
 		// Download link
 		downloadLink = document.createElement("a");
@@ -80,16 +81,17 @@ require_once '../button_back.php';
 	function exportTableToCSV(filename) {
 		var csv = [];
 		var rows = document.querySelectorAll("table tr");
-		
+
 		for (var i = 0; i < rows.length; i++) {
-			var row = [], cols = rows[i].querySelectorAll("td, th");
-			for (var j = 0; j < cols.length; j++){
-				let str = (cols[j].innerText).replace('\n' , "/")
+			var row = [],
+				cols = rows[i].querySelectorAll("td, th");
+			for (var j = 0; j < cols.length; j++) {
+				let str = (cols[j].innerText).replace('\n', "/")
 				row.push(str);
 				// console.log(str);
 			}
-			
-			csv.push(row.join(","));        
+
+			csv.push(row.join(","));
 		}
 
 		// Download CSV file
@@ -97,15 +99,15 @@ require_once '../button_back.php';
 		// console.log(csv);
 	}
 
-	$('#csv-save').click(function () { 
-		exportTableToCSV($('#week-select').val()+' '+$('#name_of_group option:selected').text())
+	$('#csv-save').click(function() {
+		exportTableToCSV($('#week-select').val() + ' ' + $('#name_of_group option:selected').text())
 	});
 
-	let next_week = moment().add(1,'weeks').format('W');
+	let next_week = moment().add(1, 'weeks').format('W');
 	let current_week = moment().format('W');
 
 	$('#week-select').val(moment().format('YYYY-') + 'W' + current_week);
-	
+
 	function tableCreate() {
 		$('table').remove();
 		let body = document.getElementById('table-space'),
@@ -197,8 +199,6 @@ require_once '../button_back.php';
 	}
 
 	function dayCreate(number) {
-
-
 		let start_week = moment($('#week-select').val());
 		let day = document.createElement('tr');
 		let trday = document.createElement('td');
@@ -223,21 +223,21 @@ require_once '../button_back.php';
 
 	$('#add-btn').click(function() {
 		tableCreate();
-		document.title = 'Расписание '+$('#name_of_group option:selected').text();
+		document.title = 'Расписание ' + $('#name_of_group option:selected').text();
 	});
-	
+
 	function swap_to_current_week() {
-		$('#week-select').val(moment().year()+'-W'+current_week);
+		$('#week-select').val(moment().year() + '-W' + current_week);
 		tableCreate();
 	}
 
 	function swap_to_next_week() {
-		$('#week-select').val(moment().year()+'-W'+next_week);
+		$('#week-select').val(moment().year() + '-W' + next_week);
 		tableCreate();
 	}
 
 	tableCreate();
-	document.title = 'Расписание '+$('#name_of_group option:selected').text();
+	document.title = 'Расписание ' + $('#name_of_group option:selected').text();
 
 	$('#week-select').on('change', function() {
 		$('#add-btn').click();
@@ -246,4 +246,36 @@ require_once '../button_back.php';
 	$('#name_of_group').on('change', function() {
 		$('#add-btn').click();
 	});
+
+	function fnExcelReport() {
+    var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
+    tab_text = tab_text + '<head><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>';
+
+    tab_text = tab_text + '<x:Name>Test Sheet</x:Name>';
+
+    tab_text = tab_text + '<x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions></x:ExcelWorksheet>';
+    tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+
+    tab_text = tab_text + "<table border='1px'>";
+    tab_text = tab_text + $('table').html();
+    tab_text = tab_text + '</table></body></html>';
+
+    var data_type = 'data:application/vnd.ms-excel';
+    
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+    
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+        if (window.navigator.msSaveBlob) {
+            var blob = new Blob([tab_text], {
+                type: "application/csv;charset=utf-8;"
+            });
+            navigator.msSaveBlob(blob, 'Test file.xls');
+        }
+    } else {
+        $('#test').attr('href', data_type + ', ' + encodeURIComponent(tab_text));
+        $('#test').attr('download', $('#week-select').val() + ' ' + $('#name_of_group option:selected').text()+'.xls');
+    }
+
+}
 </script>

@@ -35,7 +35,7 @@ if (isset($_SESSION['user_id']) and $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) 
 else {
 ?>
 	<form method = 'post' id = 'auth'>
-		<div style="width: 150px; margin: 0 auto">
+		<div style="width: 200px; margin: 0 auto">
             <div id = 'auth-text-cont'>
                 Авторизация
             </div>
