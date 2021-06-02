@@ -6,6 +6,15 @@ table {
   text-align: center;
 }
 
+#main-text{
+  display: flex;
+  align-items: center;
+}
+
+.logo{
+  height: 3em;
+}
+
 .editable-table td {
   padding: 0;
 }
@@ -27,12 +36,12 @@ select {
 }
 /* day */
 .day {
-    min-height: 48px;
-    padding: 10px;
-    margin: 25px 0;
-    background-color: white;
-    border: rgb(0, 0, 0) 2px solid;
-    border-radius: 15px;
+  min-height: 48px;
+  padding: 10px;
+  margin: 25px 0;
+  background-color: white;
+  border: rgb(0, 0, 0) 2px solid;
+  border-radius: 15px;
 }
 .class_select,
 .type_select,
@@ -41,10 +50,10 @@ select {
 }
 
 .time {
-    border: #000 solid 1px;
-    margin: 3px;
-    padding: 5px;
-    border-radius: 15px;
+  border: #000 solid 1px;
+  margin: 3px;
+  padding: 5px;
+  border-radius: 15px;
 }
 
 .buttons-area {
@@ -144,27 +153,28 @@ select {
   z-index: 1000;
 }
 .btn {
-    background-color: rgb(255, 255, 255);
-    padding: 5px;
-    border-radius: 0.3em;
-    border: #000 1px solid;
-    margin: 10px 0;
-    cursor: pointer;
-    min-width: 27px;
-    text-decoration: none;
-    color: black;
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
+  border-radius: 0.3em;
+  border: #000 1px solid;
+  margin: 10px 0;
+  cursor: pointer;
+  min-width: 27px;
+  text-decoration: none;
+  color: black;
 }
 
-button,input[type='submit'],input[type='button']{
+input[type="submit"],
+input[type="button"] {
   background-color: rgb(255, 255, 255);
-    padding: 5px;
-    border-radius: 0.3em;
-    border: #000 1px solid;
-    margin: 10px 0;
-    cursor: pointer;
-    min-width: 27px;
-    text-decoration: none;
-    color: black;
+  padding: 5px;
+  border-radius: 0.3em;
+  border: #000 1px solid;
+  margin: 10px 0;
+  cursor: pointer;
+  min-width: 27px;
+  text-decoration: none;
+  color: black;
 }
 
 a .btn-text {
@@ -183,13 +193,13 @@ h1 {
 }
 
 .group {
-    margin: 10px 0;
-    padding: 10px;
-    /* width: 100%; */
-    border: #000 1px solid;
-    border-radius: 15px;
-    background-color: #fff;
-    color: #000;
+  margin: 10px 0;
+  padding: 10px;
+  /* width: 100%; */
+  border: #000 1px solid;
+  border-radius: 15px;
+  background-color: #fff;
+  color: #000;
 }
 
 .class-edit {
@@ -197,8 +207,8 @@ h1 {
   padding: 10px;
   width: 550px;
   border: #000 1px solid;
-    border-radius: 15px;
-    background-color: #fff;
+  border-radius: 15px;
+  background-color: #fff;
 }
 
 .teacher {
@@ -206,17 +216,17 @@ h1 {
   padding: 10px;
   width: 550px;
   border: #000 1px solid;
-    border-radius: 15px;
-    background-color: #fff;
-    position: relative;
+  border-radius: 15px;
+  background-color: #fff;
+  position: relative;
 }
 .classroom {
   margin: 10px 0;
   padding: 10px;
   /* width: 550px; */
   border: #000 1px solid;
-    border-radius: 15px;
-    background-color: #fff;
+  border-radius: 15px;
+  background-color: #fff;
 }
 
 .type {
@@ -224,8 +234,8 @@ h1 {
   padding: 10px;
   width: 550px;
   border: #000 1px solid;
-    border-radius: 15px;
-    background-color: #fff;
+  border-radius: 15px;
+  background-color: #fff;
 }
 
 /* .group-class{
@@ -317,16 +327,28 @@ h1 {
   background-color: #fff;
   color: #000;
 }
-
-#all .btn {
+.btn-back .btn{
   right: 10px;
 }
-
 @media screen and (max-width: 768px) {
   #all {
-    margin: 0 auto;
-    width: 100%;
-    position: relative;
+    /* margin: 0 auto; */
+    width: auto;
+    padding: 0;
+    margin: auto 0;
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+  }
+  .centered {
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  body {
+    margin: 0;
   }
 
   table {
@@ -355,5 +377,24 @@ h1 {
 
   #auth {
     width: 90vw;
+  }
+
+  .group {
+    width: auto;
+  }
+
+  .class-edit {
+    width: auto;
+  }
+
+  .teacher {
+    width: auto;
+  }
+  .classroom {
+    width: auto;
+  }
+
+  .type {
+    width: auto;
   }
 }

@@ -34,22 +34,26 @@ session_start();
 if (isset($_SESSION['user_id']) and $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) return;
 else {
 ?>
-	<form method = 'post' id = 'auth'>
-		<div style="width: 200px; margin: 0 auto">
-            <div id = 'auth-text-cont'>
-                Авторизация
-            </div>
-            
-            <div id = 'auth-input-cont' style="text-align: left;">
-                Логин: <br><input type="text" name='auth_name'required><br>
-                Пароль: <br><input type="password" name="auth_pass" required><br>
-            </div>
-
-            <div id = 'auth-btn-cont'>
-                <input class ='btn' type="submit" value="Войти" style="width: 50%;"><br>
-            </div>
-		</div>
-	</form>
+	<div id = all class = 'centered' style = "background-color:white; border: none;">
+		<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';?>
+		
+		<form method = 'post' id = 'auth' >
+			<div style="width: 200px; margin: 0 auto">
+				<div id = 'auth-text-cont'>
+					Авторизация
+				</div>
+				
+				<div id = 'auth-input-cont' style="text-align: left;">
+					Логин: <br><input type="text" name='auth_name'required><br>
+					Пароль: <br><input type="password" name="auth_pass" required><br>
+				</div>
+	
+				<div id = 'auth-btn-cont'>
+					<input class ='btn' type="submit" value="Войти" style="width: 50%;"><br>
+				</div>
+			</div>
+		</form>
+	</div>
 <?php
 }
 mysqli_close($link);

@@ -38,22 +38,23 @@
 		require_once 'forms/add_types.php';
 		exit;
 	}
-
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';
-
 ?>
 
 <br>
 <br>
-<form method="post">
-	<div id = "menu-cont">
-		<input class = 'btn' type="submit" name='edit_groups' value="Группы">
-		<input class = 'btn' type="submit" name='edit_lessons' value="Дисциплины">
-		<input class = 'btn' type="submit" name='edit_classrooms' value="Кабинеты">
-		<input class = 'btn' type="submit" name='edit_teachers' value="Преподаватели">
-		<input class = 'btn' type="submit" name='edit_time' value="Время">
-		<input class = 'btn' type="submit" name='edit_group_classes' value="Группировка дисциплин">
-		<input class = 'btn' type="submit" name='edit_types' value="Типы пар">
-	</div>
-</form>
+<div id = all class = 'centered' style = "background-color:white; border: none;">
+<?php require_once $_SERVER['DOCUMENT_ROOT'].'/button_back.php'; ?>
+
+	<form method="post">
+		<div id = "menu-cont">
+			<input class = 'btn' type="submit" name='edit_groups' value="Группы">
+			<input class = 'btn' type="submit" name='edit_lessons' value="Дисциплины">
+			<input class = 'btn' type="submit" name='edit_classrooms' value="Кабинеты">
+			<input class = 'btn' type="submit" name='edit_teachers' value="Преподаватели">
+			<input class = 'btn' type="submit" name='edit_time' value="Время">
+			<input class = 'btn' type="submit" name='edit_group_classes' value="Группировка дисциплин">
+			<input class = 'btn' type="submit" name='edit_types' value="Типы пар">
+		</div>
+	</form>
+</div>
 

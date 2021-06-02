@@ -1,5 +1,5 @@
 <div id='all'>
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
 
     <h1>Преподаватели</h1>
     <div id="list_of_teachers">
@@ -74,7 +74,7 @@
     }, function() {
         let btn_cont = $(this).find(".btn-cont");
         $(btn_cont).toggle(100);
-        // $('.edit-cont').hide(100);
+        $('.edit-cont').hide(100);
         $('.btn-edit-teacher').val('Изменить');
 
     });

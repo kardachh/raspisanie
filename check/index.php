@@ -1,12 +1,16 @@
+
 <style>
 	<?php include '../style.css'; ?>
 </style>
-<div id=all>
+
+<div id=all>`
 	<?php
 	require_once '../button_back.php';
 	?>
 	<div id='main-text'>
-		<h1>Расписание</h1>
+	<img class = logo src='/LOGO_VYATGU_VECTOR.svg'>
+	<h1>Расписание</h1>
+		
 	</div>
 	<div id=main-cont>
 		<form method='post'>
