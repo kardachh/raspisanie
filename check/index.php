@@ -257,8 +257,9 @@
     tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
 
     tab_text = tab_text + "<table border='1px'>";
-    tab_text = tab_text + $('table').html();
+    tab_text = tab_text + $('table').html().replaceAll('<hr>','<br>');
     tab_text = tab_text + '</table></body></html>';
+	console.log(tab_text);
 
     var data_type = 'data:application/vnd.ms-excel';
     

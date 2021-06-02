@@ -1,4 +1,6 @@
 <div id='all'>
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
+
     <h1>Дисциплины</h1>
     <div id="list_of_classes">
         <?php

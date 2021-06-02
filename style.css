@@ -154,6 +154,19 @@ select {
     text-decoration: none;
     color: black;
 }
+
+button,input[type='submit'],input[type='button']{
+  background-color: rgb(255, 255, 255);
+    padding: 5px;
+    border-radius: 0.3em;
+    border: #000 1px solid;
+    margin: 10px 0;
+    cursor: pointer;
+    min-width: 27px;
+    text-decoration: none;
+    color: black;
+}
+
 a .btn-text {
   /* text-decoration: none; */
   color: #000;
@@ -200,7 +213,7 @@ h1 {
 .classroom {
   margin: 10px 0;
   padding: 10px;
-  width: 550px;
+  /* width: 550px; */
   border: #000 1px solid;
     border-radius: 15px;
     background-color: #fff;

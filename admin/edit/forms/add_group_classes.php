@@ -1,4 +1,6 @@
 <div id='all' style='width:70%'>
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
+
     <h1>Группировка дисциплин по группам</h1>
     <div id='col-cont'>
         <?php

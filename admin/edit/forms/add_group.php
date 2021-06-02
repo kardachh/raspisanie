@@ -1,5 +1,5 @@
 <div id = 'all'>
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
 
 <h1>Группы</h1>
 <div id="list_of_groups">
@@ -28,7 +28,7 @@
     ?>
 </div>
 
-<input id="btn-add-group" type="button" value="Добавить группу">
+<input id="btn-add-group" class=btn type="button" value="Добавить группу">
 <br>
 <br>
 <div id="cont-add-group">
