@@ -3,7 +3,7 @@
 	<?php include '../style.css'; ?>
 </style>
 
-<div id=all>`
+<div id=all>
 	<?php
 	require_once '../button_back.php';
 	?>
