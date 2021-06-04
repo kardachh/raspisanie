@@ -12,44 +12,36 @@ if (isset($_POST['auth_name']) or isset($_SESSION['user_id'])) {
 		session_start();
 		$_SESSION['user_id'] = $row['id'];
 		$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
-        $_SESSION['phpsess_id'] = $_COOKIE['PHPSESSID'];
-        print_r($_SESSION);
-		echo '<br>';
-        print_r($_POST);
-		// echo '<br>';
-        // print_r($_SERVER);
-
+		$_SESSION['phpsess_id'] = $_COOKIE['PHPSESSID'];
 	}
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+	header("Location: http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']); ?>
+<?php
 	exit;
 }
-
-// if (isset($_GET['action']) and $_GET['action'] == "logout") {
-// 	session_start();
-// 	session_destroy();
-// 	header("Location: http://" . $_SERVER['HTTP_HOST'] . "/");
-// 	exit;
-// }
 session_start();
 if (isset($_SESSION['user_id']) and $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) return;
 else {
 ?>
-	<div id = all class = 'centered' style = "background-color:white; border: none;">
-		<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';?>
-		
-		<form method = 'post' id = 'auth' >
+	<div id=all class='centered' style="background-color:white; border: none;">
+		<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
+
+		<head>
+			<title>Авторизация</title>
+			<link href="../style.css" type="text/css" rel="stylesheet">
+		</head>
+		<form method='post' id='auth'>
 			<div style="width: 200px; margin: 0 auto">
-				<div id = 'auth-text-cont'>
+				<div id='auth-text-cont'>
 					Авторизация
 				</div>
-				
-				<div id = 'auth-input-cont' style="text-align: left;">
-					Логин: <br><input type="text" name='auth_name'required><br>
+
+				<div id='auth-input-cont' style="text-align: left;">
+					Логин: <br><input type="text" name='auth_name' required><br>
 					Пароль: <br><input type="password" name="auth_pass" required><br>
 				</div>
-	
-				<div id = 'auth-btn-cont'>
-					<input class ='btn' type="submit" value="Войти" style="width: 50%;"><br>
+
+				<div id='auth-btn-cont'>
+					<input class='btn' type="submit" value="Войти" style="width: 50%;"><br>
 				</div>
 			</div>
 		</form>

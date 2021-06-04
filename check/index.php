@@ -1,4 +1,3 @@
-
 <style>
 	<?php include '../style.css'; ?>
 </style>
@@ -8,9 +7,9 @@
 	require_once '../button_back.php';
 	?>
 	<div id='main-text'>
-	<img class = logo src='/LOGO_VYATGU_VECTOR.svg'>
-	<h1>Расписание</h1>
-		
+		<img class=logo src='/LOGO_VYATGU_VECTOR.svg'>
+		<h1>Расписание</h1>
+
 	</div>
 	<div id=main-cont>
 		<form method='post'>
@@ -42,11 +41,13 @@
 			<input type="button" value="Текущая неделя" onclick="swap_to_current_week()">
 			<input type="button" value="Следующая неделя" onclick="swap_to_next_week()">
 		</form> <!-- загрузка групп из БД -->
-		<button id='csv-save' class = 'btn'>CSV File</button>
-		<a href="#" id="test" onClick="javascript:fnExcelReport();" class = 'btn'>Excel</a>
+		<button id='csv-save' class='btn'>CSV File</button>
+		<a href="#" id="test" onClick="javascript:fnExcelReport();" class='btn'>Excel</a>
 
 	</div>
-	<center><div id='table-space'></div></center>
+	<center>
+		<div id='table-space'></div>
+	</center>
 </div>
 
 
@@ -252,35 +253,35 @@
 	});
 
 	function fnExcelReport() {
-    var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
-    tab_text = tab_text + '<head><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>';
+		var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
+		tab_text = tab_text + '<head><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>';
 
-    tab_text = tab_text + '<x:Name>Test Sheet</x:Name>';
+		tab_text = tab_text + '<x:Name>Test Sheet</x:Name>';
 
-    tab_text = tab_text + '<x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions></x:ExcelWorksheet>';
-    tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+		tab_text = tab_text + '<x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions></x:ExcelWorksheet>';
+		tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
 
-    tab_text = tab_text + "<table border='1px'>";
-    tab_text = tab_text + $('table').html().replaceAll('<hr>','<br>');
-    tab_text = tab_text + '</table></body></html>';
-	console.log(tab_text);
+		tab_text = tab_text + "<table border='1px'>";
+		tab_text = tab_text + $('table').html().replaceAll('<hr>', '<br>');
+		tab_text = tab_text + '</table></body></html>';
+		console.log(tab_text);
 
-    var data_type = 'data:application/vnd.ms-excel';
-    
-    var ua = window.navigator.userAgent;
-    var msie = ua.indexOf("MSIE ");
-    
-    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
-        if (window.navigator.msSaveBlob) {
-            var blob = new Blob([tab_text], {
-                type: "application/csv;charset=utf-8;"
-            });
-            navigator.msSaveBlob(blob, 'Test file.xls');
-        }
-    } else {
-        $('#test').attr('href', data_type + ', ' + encodeURIComponent(tab_text));
-        $('#test').attr('download', $('#week-select').val() + ' ' + $('#name_of_group option:selected').text()+'.xls');
-    }
+		var data_type = 'data:application/vnd.ms-excel';
 
-}
+		var ua = window.navigator.userAgent;
+		var msie = ua.indexOf("MSIE ");
+
+		if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+			if (window.navigator.msSaveBlob) {
+				var blob = new Blob([tab_text], {
+					type: "application/csv;charset=utf-8;"
+				});
+				navigator.msSaveBlob(blob, 'Test file.xls');
+			}
+		} else {
+			$('#test').attr('href', data_type + ', ' + encodeURIComponent(tab_text));
+			$('#test').attr('download', $('#week-select').val() + ' ' + $('#name_of_group option:selected').text() + '.xls');
+		}
+
+	}
 </script>
