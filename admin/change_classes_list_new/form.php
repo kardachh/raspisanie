@@ -153,7 +153,10 @@ for ($i = 1; $i < 7; $i++) { ?>
                                     <div class="editable-select">
                                         <select class="select-name">
                                             <?php
-                                            $query_name = "SELECT Classes.ID, Classes.Name, Teachers.First_Name,Teachers.Middle_Name,Teachers.Second_Name FROM `Group_Classes`,Classes,Groups,Teachers WHERE Group_Classes.ID_Group = Groups.id and Classes.ID = Group_Classes.ID_Class AND Groups.ID = $group_id and Classes.ID_Teacher = Teachers.ID";
+                                            $query_name = 
+                                                "SELECT Group_Classes.ID, Classes.Name, Teachers.First_Name,Teachers.Middle_Name,Teachers.Second_Name 
+                                                FROM `Group_Classes`,Classes,Groups,Teachers 
+                                                WHERE Group_Classes.ID_Group = Groups.id and Classes.ID = Group_Classes.ID_Class AND Groups.ID = $group_id and Classes.ID_Teacher = Teachers.ID";
                                             $result_name = mysqli_query($link, $query_name) or die("Ошибка " . mysqli_error($link));
                                             if ($result_name) {
                                                 while ($row = mysqli_fetch_array($result_name)) {

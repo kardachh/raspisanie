@@ -40,9 +40,13 @@
 			<input id='add-btn' type='button' value="Добавить" style="display:none">
 			<input type="button" value="Текущая неделя" onclick="swap_to_current_week()">
 			<input type="button" value="Следующая неделя" onclick="swap_to_next_week()">
+			<div class='btn-group-right'>
+				<a class = btn href="teachers/">Для преподавателей</a>
+				<!-- <button id='csv-save' class='btn'>CSV File</button> -->
+				<a href="#" id="test" onClick="javascript:fnExcelReport();" class='btn'>Excel</a>
+			</div>
 		</form> <!-- загрузка групп из БД -->
-		<button id='csv-save' class='btn'>CSV File</button>
-		<a href="#" id="test" onClick="javascript:fnExcelReport();" class='btn'>Excel</a>
+
 
 	</div>
 	<center>

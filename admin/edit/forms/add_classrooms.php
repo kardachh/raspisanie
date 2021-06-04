@@ -1,5 +1,5 @@
 <div id='all'>
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
 
     <h1>Кабинеты</h1>
     <div id="list_of_classrooms">
@@ -50,93 +50,92 @@
     url = '../../api/edit_info/classrooms_edit.php';
 
     $(".classroom").hover(function() {
-    let btn_cont = $(this).find(".btn-cont");
-    $(btn_cont).toggle(100);
+        let btn_cont = $(this).find(".btn-cont");
+        $(btn_cont).toggle(100);
     }, function() {
-    let btn_cont = $(this).find(".btn-cont");
-    $(btn_cont).toggle(100);
-    $('.edit-cont').hide(100);
-    $('.btn-edit-classroom').val('Изменить');
+        let btn_cont = $(this).find(".btn-cont");
+        $(btn_cont).toggle(100);
+        $('.edit-cont').hide(100);
+        $('.btn-edit-classroom').val('Изменить');
 
     });
 
     $("#btn-add-classroom").click(function() {
-    $("#cont-add-classroom").toggle(200);
-    $("#btn-add-classroom").val() == 'Добавить группу' ? $("#btn-add-classroom").val('Скрыть') : $("#btn-add-classroom").val('Добавить группу');
+        $("#cont-add-classroom").toggle(200);
+        $("#btn-add-classroom").val() == 'Добавить группу' ? $("#btn-add-classroom").val('Скрыть') : $("#btn-add-classroom").val('Добавить группу');
     });
 
     $('.btn-edit-classroom').click(function() {
-    let cont_edit = $(this).parent().parent().find('.edit-cont');
+        let cont_edit = $(this).parent().parent().find('.edit-cont');
 
-    $(cont_edit).toggle(200);
-    $(this).val() == 'Изменить' ? $(this).val('Скрыть') : $(this).val('Изменить');
+        $(cont_edit).toggle(200);
+        $(this).val() == 'Изменить' ? $(this).val('Скрыть') : $(this).val('Изменить');
     });
 
     $('#enter-new-classroom-btn').click(function() {
-    if ($('#name-new-classroom-input').val()!=''){
-    $.ajax({
-    type: "post",
-    url: url,
-    data: {
-    type: 'add',
-    classroom_number: $('#name-new-classroom-input').val()
-    },
-    success: function(response) {
-    console.log(response);
-    location.reload();
-    },
-    error: function() {
-    console.log(response);
-    }
-    });
-    }
-    else alert('Введите наименование группы');
+        if ($('#name-new-classroom-input').val() != '') {
+            $.ajax({
+                type: "post",
+                url: url,
+                data: {
+                    type: 'add',
+                    classroom_number: $('#name-new-classroom-input').val()
+                },
+                success: function(response) {
+                    console.log(response);
+                    location.reload();
+                },
+                error: function() {
+                    console.log(response);
+                }
+            });
+        } else alert('Введите наименование группы');
 
     });
 
     $('.btn-save-classroom').click(function() {
-    if ($(this).parent().find('.edit-input-name').val()!=""){
-    $.ajax({
-    type: "post",
-    url: url,
-    data: {
-    type: 'edit',
-    new_classroom_number:$(this).parent().find('.edit-input-name').val(),
-    classroom_number:$(this).parent().parent().find('.classroom-name').attr('class').slice(25),
-    },
-    success: function(response) {
-    console.log(response);
-    location.reload();
-    },
-    error: function() {
-    console.log(response);
-    }
-    });
-    } else alert("Введите номер кабинета");
+        if ($(this).parent().find('.edit-input-name').val() != "") {
+            $.ajax({
+                type: "post",
+                url: url,
+                data: {
+                    type: 'edit',
+                    new_classroom_number: $(this).parent().find('.edit-input-name').val(),
+                    classroom_number: $(this).parent().parent().find('.classroom-name').attr('class').slice(25),
+                },
+                success: function(response) {
+                    console.log(response);
+                    location.reload();
+                },
+                error: function() {
+                    console.log(response);
+                }
+            });
+        } else alert("Введите номер кабинета");
 
 
     });
 
     $('.btn-del-classroom').click(function() {
-    let confirm_del = confirm("Вы уверены, что хотите удалить кабинет "+$(this).parent().parent().find('.classroom-name').text()+"?");
-    console.log(confirm_del);
-    if (confirm_del){
-    $.ajax({
-    type: "post",
-    url: url,
-    data: {
-    type: 'del',
-    classroom_number:$(this).parent().parent().find('.classroom-name').attr('class').slice(25),
-    },
-    success: function(response) {
-    console.log(response);
-    location.reload();
-    },
-    error: function() {
-    console.log(response);
-    }
-    });
-    }
+        let confirm_del = confirm("Вы уверены, что хотите удалить кабинет " + $(this).parent().parent().find('.classroom-name').text() + "?");
+        console.log(confirm_del);
+        if (confirm_del) {
+            $.ajax({
+                type: "post",
+                url: url,
+                data: {
+                    type: 'del',
+                    classroom_number: $(this).parent().parent().find('.classroom-name').attr('class').slice(25),
+                },
+                success: function(response) {
+                    console.log(response);
+                    location.reload();
+                },
+                error: function() {
+                    console.log(response);
+                }
+            });
+        }
     });
     //
-    </script>
+</script>

@@ -1,8 +1,16 @@
 <?php
-$class_id = $_POST['class_id'];
-$group_id = $_POST['group_id'];
-$group_class_id = $_POST['group_class_id'];
-$type = $_POST['type'];
+if (isset($_POST['class_id'])){
+    $class_id = $_POST['class_id'];
+}
+if (isset($_POST['group_id'])){
+    $group_id = $_POST['group_id'];
+}
+if (isset($_POST['group_class_id'])){
+    $group_class_id = $_POST['group_class_id'];
+}
+if (isset($_POST['type'])){
+    $type = $_POST['type'];
+}
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php';
 $link = mysqli_connect($host, $user, $password, $database) or die("Ошибка " . mysqli_error($link));

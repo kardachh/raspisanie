@@ -15,6 +15,12 @@ table {
   height: 3em;
 }
 
+.btn-group-right{
+  display:inline-block;
+  position: absolute;
+  right: 10px;
+}
+
 .editable-table td {
   padding: 0;
 }
@@ -330,6 +336,11 @@ h1 {
 .btn-back .btn{
   right: 10px;
 }
+
+.all-teacher{
+  width: 750px !important;
+}
+
 @media screen and (max-width: 768px) {
   #all {
     /* margin: 0 auto; */

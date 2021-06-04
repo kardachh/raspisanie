@@ -27,6 +27,6 @@
     if ($link->query($sql) === TRUE) {
         echo "Record updated successfully";
     } else {
-        echo "Error updating record: " . $link->error;
+        echo "\nError updating record: " . $link->error;
     }
     mysqli_close($link);
