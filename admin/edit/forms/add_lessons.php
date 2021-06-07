@@ -27,7 +27,19 @@
         if ($result) {
             while ($row = mysqli_fetch_array($result)) { ?>
                 <div class="class-edit">
-                    <div class="class-name class-<?= $row['class_id'] ?>"> <?= $row['Name'] ?></div>
+                    <div class="class-name class-<?= $row['class_id'] ?>">
+                        <?= $row['Name']?>
+                        <span style="color: #737a85;">
+                            <?=' ('.$row['Second_Name'] 
+                            . " " . 
+                            mb_substr($row['First_Name'], 0, 1 - mb_strlen($row['First_Name'])) 
+                            . "." . 
+                            mb_substr($row['Middle_Name'], 0, 1 - mb_strlen($row['Middle_Name']))
+                            . ".)"
+                            ?>
+                        </span>
+                        
+                    </div>
                     <div class="btn-cont">
                         <input class="btn-edit-class" type="button" value="Изменить">
                         <input class="btn-del-class" type="button" value="Удалить">
@@ -58,7 +70,7 @@
         ?>
     </div>
 
-    <input id="btn-add-class" type="button" value="Добавить предмет">
+    <input id="btn-add-class" type="button" value="Добавить дисциплину">
     <br>
     <br>
     <div id="cont-add-class">
@@ -67,7 +79,7 @@
                 Наименование пары
             </div>
             <div>
-                <input id="name-new-class-input" type="text" placeholder="Введите наименование дисциплины" required>
+                <input id="name-new-class-input" type="text" placeholder="Введите наименование дисциплины" style="width: 300px;" required>
             </div>
         </div>
         <div id="teacher-new-class">
@@ -75,7 +87,7 @@
                 Преподаватель
             </div>
             <div>
-                <select id="teacher-new-class-select">
+                <select id="teacher-new-class-select" style="width: 300px;">
                     <?php
                     foreach ($teachers as $value) {
                     ?>
@@ -110,7 +122,7 @@
 
     $("#btn-add-class").click(function() {
         $("#cont-add-class").toggle(200);
-        $("#btn-add-class").val() == 'Добавить предмет' ? $("#btn-add-class").val('Отмена') : $("#btn-add-class").val('Добавить предмет');
+        $("#btn-add-class").val() == 'Добавить дисциплину' ? $("#btn-add-class").val('Отмена') : $("#btn-add-class").val('Добавить дисциплину');
     });
 
     $('.btn-edit-class').click(function() {
