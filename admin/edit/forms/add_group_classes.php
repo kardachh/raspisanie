@@ -1,4 +1,4 @@
-<div id='all' style='width:70%'>
+<div id='all' class = 'all-group-classes'>
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
 
     <h1>Группировка дисциплин по группам</h1>

@@ -335,10 +335,14 @@ h1 {
 }
 .btn-back .btn{
   right: 10px;
+  top: 0;
 }
 
 .all-teacher{
   width: 750px !important;
+}
+.all-group-classes{
+  width: 70%;
 }
 
 @media screen and (max-width: 768px) {
@@ -351,11 +355,36 @@ h1 {
     border: none;
     border-radius: 15px;
   }
+  #main-text {
+    display: flex;
+    align-items: center;
+    font-size: small;
+    }
+
+  .all-teacher{
+    width: 100% !important;
+  }
+
+  .all-group-classes{
+    width: auto;
+  }
+
   .centered {
     height: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .btn-group-right{
+    position: relative;
+    right: 0;
+    font-size: 10px!important;
+    height: 25px;
+  }
+
+  #main{
+    padding: 10px;
   }
 
   body {
@@ -383,7 +412,6 @@ h1 {
     font-size: small;
     text-align: center;
     position: absolute;
-    right: 0;
   }
 
   #auth {
@@ -408,4 +436,10 @@ h1 {
   .type {
     width: auto;
   }
+
+  .col{
+    width: auto;
+    display: block;
+  }
+  
 }

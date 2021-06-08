@@ -3,51 +3,52 @@
 </style>
 
 <div id=all>
+	
+	<div id =main>
 	<?php
 	require_once '../button_back.php';
 	?>
-	<div id='main-text'>
-		<img class=logo src='/LOGO_VYATGU_VECTOR.svg'>
-		<h1>Расписание</h1>
+		<div id='main-text'>
+			<img class=logo src='/LOGO_VYATGU_VECTOR.svg'>
+			<h1>Расписание</h1>
 
-	</div>
-	<div id=main-cont>
-		<form method='post'>
-			<p>
-				<select id='name_of_group'>
-					<?php
-					require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php'; // подключаем скрипт
+		</div>
+		<div id=main-cont>
+			<form method='post'>
+				<p>
+					<select id='name_of_group'>
+						<?php
+						require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php'; // подключаем скрипт
 
-					// подключаемся к серверу
-					$link = mysqli_connect($host, $user, $password, $database)
-						or die("Ошибка " . mysqli_error($link));
+						// подключаемся к серверу
+						$link = mysqli_connect($host, $user, $password, $database)
+							or die("Ошибка " . mysqli_error($link));
 
-					// выполняем операции с базой данных
-					$query = "SELECT * FROM Groups ORDER BY Name";
-					$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-					if ($result) {
-						while ($row = mysqli_fetch_array($result)) {
-							echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
+						// выполняем операции с базой данных
+						$query = "SELECT * FROM Groups ORDER BY Name";
+						$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+						if ($result) {
+							while ($row = mysqli_fetch_array($result)) {
+								echo '<option value=', $row['ID'], '>', $row['Name'], '</option>';
+							}
 						}
-					}
-					// закрываем подключение
-					mysqli_close($link);
-					?>
-				</select>
-			</p>
-			<!-- week выводится в формате "2021-W15" -->
-			<input id='week-select' type="input" placeholder="Выберите неделю" required style="display:none">
-			<input id='add-btn' type='button' value="Добавить" style="display:none">
-			<input type="button" value="Текущая неделя" onclick="swap_to_current_week()">
-			<input type="button" value="Следующая неделя" onclick="swap_to_next_week()">
-			<div class='btn-group-right'>
-				<a class = btn href="teachers/">Для преподавателей</a>
-				<!-- <button id='csv-save' class='btn'>CSV File</button> -->
-				<a href="#" id="test" onClick="javascript:fnExcelReport();" class='btn'>Excel</a>
-			</div>
-		</form> <!-- загрузка групп из БД -->
-
-
+						// закрываем подключение
+						mysqli_close($link);
+						?>
+					</select>
+				</p>
+				<!-- week выводится в формате "2021-W15" -->
+				<input id='week-select' type="input" placeholder="Выберите неделю" required style="display:none">
+				<input id='add-btn' type='button' value="Добавить" style="display:none">
+				<input type="button" value="Текущая неделя" onclick="swap_to_current_week()">
+				<input type="button" value="Следующая неделя" onclick="swap_to_next_week()">
+				<div class='btn-group-right'>
+					<a class = btn href="teachers/">Для преподавателей</a>
+					<!-- <button id='csv-save' class='btn'>CSV File</button> -->
+					<a href="#" id="test" onClick="javascript:fnExcelReport();" class='btn'>Excel</a>
+				</div>
+			</form> <!-- загрузка групп из БД -->
+		</div>
 	</div>
 	<center>
 		<div id='table-space'></div>
@@ -68,7 +69,8 @@
 	}
 	
 	let last_group = getCookie('last_group'); // id последней выбраной группы
-	$('#name_of_group').val(last_group);
+	if (last_group)
+		$('#name_of_group').val(last_group);
 
 	function downloadCSV(csv, filename) {
 		var csvFile;

@@ -2,6 +2,8 @@
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/style.css'; ?>
 </style>
 <div id=all class='all-teacher'>
+    
+    <div id = main>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';
     ?>
@@ -53,6 +55,7 @@
 
 
     </div>
+    </div>
     <center>
         <div id='table-space'></div>
     </center>
@@ -71,7 +74,8 @@
 	}
 
     let last_teacher = getCookie('last_teacher'); // id последнего выбранного преподавателя
-	$('#select-teacher').val(last_teacher);
+	if (last_teacher)
+        $('#select-teacher').val(last_teacher);
 
     function downloadCSV(csv, filename) {
         var csvFile;

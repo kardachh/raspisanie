@@ -30,7 +30,7 @@ if ($type == 'find'){
         }
     // echo json_encode($rows);
     $text = "
-    <select size='25' class='group-class".$value['ID']."'>";
+    <select size='25' class='group-class'>";
     foreach ($rows as $key => $value) {
         $text= $text.
         "<option value='".$value['ID']."'>".$value['Name']." (".$value['Second_Name']." ". mb_substr($value['First_Name'], 0, 1 - mb_strlen($value['First_Name'])).".".mb_substr($value['Middle_Name'], 0, 1 - mb_strlen($value['Middle_Name'])).".".")</option>";
