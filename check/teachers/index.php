@@ -63,6 +63,16 @@
 <script src='../../../jquery.js'></script>
 
 <script>
+    function getCookie(name) {
+		let matches = document.cookie.match(new RegExp(
+			"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+		));
+		return matches ? decodeURIComponent(matches[1]) : undefined;
+	}
+
+    let last_teacher = getCookie('last_teacher'); // id последнего выбранного преподавателя
+	$('#select-teacher').val(last_teacher);
+
     function downloadCSV(csv, filename) {
         var csvFile;
         var downloadLink;
@@ -286,6 +296,10 @@
 
     $('#select-teacher').on('change', function() {
         $('#add-btn').click();
+        // специальные символы (пробелы), требуется кодирование
+		let value = $(this).val();
+		document.cookie = encodeURIComponent('last_teacher') + '=' + encodeURIComponent(value);
+		$('#add-btn').click();
     });
 
     function fnExcelReport() {

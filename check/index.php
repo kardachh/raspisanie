@@ -59,6 +59,17 @@
 <script src='../../jquery.js'></script>
 <!-- <script src = 'script_add_rasp.js'></script> -->
 <script>
+
+	function getCookie(name) {
+		let matches = document.cookie.match(new RegExp(
+			"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+		));
+		return matches ? decodeURIComponent(matches[1]) : undefined;
+	}
+	
+	let last_group = getCookie('last_group'); // id последней выбраной группы
+	$('#name_of_group').val(last_group);
+
 	function downloadCSV(csv, filename) {
 		var csvFile;
 		var downloadLink;
@@ -253,6 +264,9 @@
 	});
 
 	$('#name_of_group').on('change', function() {
+		// специальные символы (пробелы), требуется кодирование
+		let value = $(this).val();
+		document.cookie = encodeURIComponent('last_group') + '=' + encodeURIComponent(value);
 		$('#add-btn').click();
 	});
 
@@ -286,6 +300,7 @@
 			$('#test').attr('href', data_type + ', ' + encodeURIComponent(tab_text));
 			$('#test').attr('download', $('#week-select').val() + ' ' + $('#name_of_group option:selected').text() + '.xls');
 		}
-
 	}
+
+	
 </script>
