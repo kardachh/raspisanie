@@ -1,7 +1,8 @@
 <div id='all'>
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
-
-    <h1>Преподаватели</h1>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
+    <div id=main>
+        <h1>Преподаватели</h1>
+    </div>
     <div id="list_of_teachers">
         <?php
         require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php';

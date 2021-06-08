@@ -1,7 +1,8 @@
 <div id='all'>
     <?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
-
-    <h1>Кабинеты</h1>
+    <div id=main>
+        <h1>Кабинеты</h1>
+    </div>
     <div id="list_of_classrooms">
         <?php
         require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php';

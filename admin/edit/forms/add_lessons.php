@@ -1,7 +1,8 @@
 <div id='all'>
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
-
-    <h1>Дисциплины</h1>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
+    <div id=main>
+        <h1>Дисциплины</h1>
+    </div>
     <div id="list_of_classes">
         <?php
         require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php';
@@ -28,17 +29,17 @@
             while ($row = mysqli_fetch_array($result)) { ?>
                 <div class="class-edit">
                     <div class="class-name class-<?= $row['class_id'] ?>">
-                        <?= $row['Name']?>
+                        <?= $row['Name'] ?>
                         <span style="color: #737a85;">
-                            <?=' ('.$row['Second_Name'] 
-                            . " " . 
-                            mb_substr($row['First_Name'], 0, 1 - mb_strlen($row['First_Name'])) 
-                            . "." . 
-                            mb_substr($row['Middle_Name'], 0, 1 - mb_strlen($row['Middle_Name']))
-                            . ".)"
+                            <?= ' (' . $row['Second_Name']
+                                . " " .
+                                mb_substr($row['First_Name'], 0, 1 - mb_strlen($row['First_Name']))
+                                . "." .
+                                mb_substr($row['Middle_Name'], 0, 1 - mb_strlen($row['Middle_Name']))
+                                . ".)"
                             ?>
                         </span>
-                        
+
                     </div>
                     <div class="btn-cont">
                         <input class="btn-edit-class" type="button" value="Изменить">

@@ -1,7 +1,8 @@
-<div id='all' class = 'all-group-classes'>
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
-
-    <h1>Группировка дисциплин по группам</h1>
+<div id='all' class='all-group-classes'>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
+    <div id=main>
+        <h1>Группировка дисциплин по группам</h1>
+    </div>
     <div id='col-cont'>
         <?php
         require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php';
@@ -177,6 +178,6 @@ mysqli_close($link);
     });
 
     $('#select-group').on('change', function() {
-		$('#btn-find').click();
-	});
+        $('#btn-find').click();
+    });
 </script>
