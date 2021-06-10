@@ -7,7 +7,7 @@
 </head>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/connection.php'; ?>
-<div id = 'all'>
+<div id = 'all' class = 'all-change-classes-list'>
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/button_back.php'; ?>
 <div id = main>
 	<div id='main-text'>

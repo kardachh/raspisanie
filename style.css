@@ -6,19 +6,20 @@ table {
   text-align: center;
 }
 
-#main-text{
+#main-text {
   display: flex;
   align-items: center;
 }
 
-.logo{
+.logo {
   height: 3em;
 }
 
-.btn-group-right{
-  display:inline-block;
-  position: absolute;
-  right: 10px;
+.btn-group-right {
+  display: inline-block;
+  /* position: absolute;
+  right: 10px; */
+  font-size: 13px !important;
 }
 
 .editable-table td {
@@ -168,6 +169,7 @@ select {
   min-width: 27px;
   text-decoration: none;
   color: black;
+  font-family: Open Sans;
 }
 
 input[type="submit"],
@@ -181,6 +183,7 @@ input[type="button"] {
   min-width: 27px;
   text-decoration: none;
   color: black;
+  font-family: Open Sans;
 }
 
 a .btn-text {
@@ -196,6 +199,7 @@ a .btn-text {
 h1 {
   margin: 0;
   font-family: Open Sans;
+  font-weight: 400;
 }
 
 .group {
@@ -333,16 +337,31 @@ h1 {
   background-color: #fff;
   color: #000;
 }
-.btn-back .btn{
+.btn-back .btn {
   right: 10px;
   top: 0;
 }
 
-.all-teacher{
+.all-teacher {
   width: 750px !important;
 }
-.all-group-classes{
+.all-group-classes {
   width: 70%;
+}
+.all-change-classes-list {
+  width: 750px !important;
+}
+
+#clock {
+  font-weight: 100;
+  position: absolute;
+  right: 100px;
+  top: 50;
+  font-size: 48px;
+}
+
+#btn-today {
+  background-color: rgba(0, 255, 103, 0.5);
 }
 
 @media screen and (max-width: 768px) {
@@ -355,17 +374,26 @@ h1 {
     border: none;
     border-radius: 15px;
   }
+
+  .all-change-classes-list {
+    width: auto !important;
+  }
+
   #main-text {
     display: flex;
     align-items: center;
     font-size: small;
-    }
+  }
 
-  .all-teacher{
+  .all-teacher {
     width: 100% !important;
   }
 
-  .all-group-classes{
+  #clock {
+    display: none;
+  }
+
+  .all-group-classes {
     width: auto;
   }
 
@@ -376,14 +404,14 @@ h1 {
     align-items: center;
   }
 
-  .btn-group-right{
+  .btn-group-right {
     position: relative;
     right: 0;
-    font-size: 10px!important;
+    font-size: 13px !important;
     height: 25px;
   }
 
-  #main{
+  #main {
     padding: 10px;
   }
 
@@ -397,10 +425,6 @@ h1 {
 
   td {
     padding: 5px;
-  }
-
-  a {
-    font-size: larger;
   }
 
   #menu-cont {
@@ -437,9 +461,8 @@ h1 {
     width: auto;
   }
 
-  .col{
+  .col {
     width: auto;
     display: block;
   }
-  
 }

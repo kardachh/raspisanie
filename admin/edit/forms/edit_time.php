@@ -1,5 +1,7 @@
 <div id='all'>
     <div id=main>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
+
         <h1>Изменение времени</h1>
         <?php
         require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php';
@@ -22,7 +24,6 @@
         <input id="btn-save-time" type="button" value="Сохранить изменения">
     </div>
 </div>
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/button_back.php'; ?>
 
 
 <script>

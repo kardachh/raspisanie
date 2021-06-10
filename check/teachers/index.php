@@ -2,59 +2,60 @@
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/style.css'; ?>
 </style>
 <div id=all class='all-teacher'>
-    
-    <div id = main>
-    <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';
-    ?>
-    <div id='main-text'>
-        <img class=logo src='/LOGO_VYATGU_VECTOR.svg'>
-        <h1>Расписание преподавателя</h1>
-    </div>
-    <div id=main-cont>
-        <form method='post'>
-            <p>
-                <select id='select-teacher'>
-                    <?php
-                    require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php'; // подключаем скрипт
 
-                    // подключаемся к серверу
-                    $link = mysqli_connect($host, $user, $password, $database)
-                        or die("Ошибка " . mysqli_error($link));
+    <div id=main>
+        <?php
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/button_back.php';
+        ?>
+        <div id='main-text'>
+            <img class=logo src='/LOGO_VYATGU_VECTOR.svg'>
+            <h1>Расписание преподавателя</h1>
+            <h1 id='clock'></h1>
+        </div>
+        <div id=main-cont>
+            <form method='post'>
+                <p>
+                    <select id='select-teacher'>
+                        <?php
+                        require_once $_SERVER['DOCUMENT_ROOT'] . '/connection.php'; // подключаем скрипт
 
-                    // выполняем операции с базой данных
-                    $query = "SELECT * FROM `Teachers` ORDER BY Second_Name";
-                    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-                    if ($result) {
-                        while ($row = mysqli_fetch_array($result)) {
-                            $fio = $row['Second_Name']
-                                . ' ' .
-                                mb_substr($row['First_Name'], 0, 1 - mb_strlen($row['First_Name']))
-                                . '.' .
-                                mb_substr($row['Middle_Name'], 0, 1 - mb_strlen($row['Middle_Name']))
-                                . '.';
-                            echo '<option value=', $row['ID'], '>', $fio, '</option>';
+                        // подключаемся к серверу
+                        $link = mysqli_connect($host, $user, $password, $database)
+                            or die("Ошибка " . mysqli_error($link));
+
+                        // выполняем операции с базой данных
+                        $query = "SELECT * FROM `Teachers` ORDER BY Second_Name";
+                        $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+                        if ($result) {
+                            while ($row = mysqli_fetch_array($result)) {
+                                $fio = $row['Second_Name']
+                                    . ' ' .
+                                    mb_substr($row['First_Name'], 0, 1 - mb_strlen($row['First_Name']))
+                                    . '.' .
+                                    mb_substr($row['Middle_Name'], 0, 1 - mb_strlen($row['Middle_Name']))
+                                    . '.';
+                                echo '<option value=', $row['ID'], '>', $fio, '</option>';
+                            }
                         }
-                    }
-                    // закрываем подключение
-                    mysqli_close($link);
-                    ?>
-                </select>
-            </p>
-            <!-- week выводится в формате "2021-W15" -->
-            <input id='week-select' type="input" placeholder="Выберите неделю" required style="display:none">
-            <input id='add-btn' type='button' value="Добавить" style="display:none">
-            <input type="button" value="Текущая неделя" onclick="swap_to_current_week()">
-            <input type="button" value="Следующая неделя" onclick="swap_to_next_week()">
-            <div class='btn-group-right'>
-                <!-- <a href="teachers/">Для преподавателей</a> -->
-                <!-- <button id='csv-save' class='btn'>CSV File</button> -->
-                <a href="#" id="test" onClick="javascript:fnExcelReport();" class='btn'>Excel</a>
-            </div>
-        </form> <!-- загрузка групп из БД -->
+                        // закрываем подключение
+                        mysqli_close($link);
+                        ?>
+                    </select>
+                </p>
+                <!-- week выводится в формате "2021-W15" -->
+                <input id='week-select' type="input" placeholder="Выберите неделю" required style="display:none">
+                <input id='add-btn' type='button' value="Добавить" style="display:none">
+                <input type="button" value="Текущая неделя" onclick="swap_to_current_week()">
+                <input type="button" value="Следующая неделя" onclick="swap_to_next_week()">
+                <div class='btn-group-right'>
+                    <!-- <a href="teachers/">Для преподавателей</a> -->
+                    <!-- <button id='csv-save' class='btn'>CSV File</button> -->
+                    <a href="#" id="test" onClick="javascript:fnExcelReport();" class='btn'>Excel</a>
+                </div>
+            </form> <!-- загрузка групп из БД -->
 
 
-    </div>
+        </div>
     </div>
     <center>
         <div id='table-space'></div>
@@ -67,14 +68,14 @@
 
 <script>
     function getCookie(name) {
-		let matches = document.cookie.match(new RegExp(
-			"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-		));
-		return matches ? decodeURIComponent(matches[1]) : undefined;
-	}
+        let matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
 
     let last_teacher = getCookie('last_teacher'); // id последнего выбранного преподавателя
-	if (last_teacher)
+    if (last_teacher)
         $('#select-teacher').val(last_teacher);
 
     function downloadCSV(csv, filename) {
@@ -173,20 +174,20 @@
             success: function(response) {
                 // console.log(response);
                 time.innerHTML = response.time;
-                if (response.name.includes('<hr>')){
+                if (response.name.includes('<hr>')) {
                     let arr = response.name.split('<hr>');
                     arr = unique(arr);
                     response.name = arr.join('<hr>');
                 }
                 name.innerHTML = response.name;
-                if (response.type.includes('<hr>')){
+                if (response.type.includes('<hr>')) {
                     let arr = response.type.split('<hr>');
                     arr = unique(arr);
                     response.type = arr.join('<hr>');
                 }
                 type.innerHTML = response.type;
                 group.innerHTML = response.group;
-                if (response.classroom.includes('<hr>')){
+                if (response.classroom.includes('<hr>')) {
                     let arr = response.classroom.split('<hr>');
                     arr = unique(arr);
                     console.log(arr)
@@ -301,9 +302,9 @@
     $('#select-teacher').on('change', function() {
         $('#add-btn').click();
         // специальные символы (пробелы), требуется кодирование
-		let value = $(this).val();
-		document.cookie = encodeURIComponent('last_teacher') + '=' + encodeURIComponent(value);
-		$('#add-btn').click();
+        let value = $(this).val();
+        document.cookie = encodeURIComponent('last_teacher') + '=' + encodeURIComponent(value);
+        $('#add-btn').click();
     });
 
     function fnExcelReport() {
@@ -338,4 +339,10 @@
         }
 
     }
+
+    function clock() {
+        $('#clock').text(moment().format('h:mm:ss'));
+    }
+    clock();
+    setInterval(clock, 1000);
 </script>

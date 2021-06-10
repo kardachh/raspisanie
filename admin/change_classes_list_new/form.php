@@ -265,6 +265,7 @@ for ($i = 1; $i < 7; $i++) { ?>
 mysqli_close($link);
 ?>
 
+
 <script>
     $('.btn-add').click(function(e) {
         let parent = $(e.target).parent()[0];

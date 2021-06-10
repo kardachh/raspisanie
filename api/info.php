@@ -78,13 +78,6 @@ if ($result) {
         array_push($arr_time, $row['Time']);
     }
 }
-// закрываем подключение
-mysqli_close($link);
-
-// получение наименований пар
-// подключаемся к серверу
-$link = mysqli_connect($host, $user, $password, $database)
-    or die("Ошибка " . mysqli_error($link));
 
 // выполняем операции с базой данных
 $result = mysqli_query($link, $sql_all) or die("Ошибка " . mysqli_error($link));
@@ -93,13 +86,6 @@ if ($result) {
         array_push($arr_name, $row['class_name']);
     }
 }
-// закрываем подключение
-mysqli_close($link);
-
-// получение типа пары
-// подключаемся к серверу
-$link = mysqli_connect($host, $user, $password, $database)
-    or die("Ошибка " . mysqli_error($link));
 
 // выполняем операции с базой данных
 $result = mysqli_query($link, $sql_all) or die("Ошибка " . mysqli_error($link));
@@ -108,13 +94,6 @@ if ($result) {
         array_push($arr_type, $row['type']);
     }
 }
-// закрываем подключение
-mysqli_close($link);
-
-// получение преподавателя
-// подключаемся к серверу
-$link = mysqli_connect($host, $user, $password, $database)
-    or die("Ошибка " . mysqli_error($link));
 
 // выполняем операции с базой данных
 $result = mysqli_query($link, $sql_all) or die("Ошибка " . mysqli_error($link));
@@ -130,13 +109,6 @@ if ($result) {
         array_push($arr_teacher, $fio);
     }
 }
-// закрываем подключение
-mysqli_close($link);
-
-// получение кабинета
-// подключаемся к серверу
-$link = mysqli_connect($host, $user, $password, $database)
-    or die("Ошибка " . mysqli_error($link));
 
 // выполняем операции с базой данных
 $result = mysqli_query($link, $sql_all) or die("Ошибка " . mysqli_error($link));

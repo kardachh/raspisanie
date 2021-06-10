@@ -3,15 +3,15 @@
 </style>
 
 <div id=all>
-	
-	<div id =main>
-	<?php
-	require_once '../button_back.php';
-	?>
+
+	<div id=main>
+		<?php
+		require_once '../button_back.php';
+		?>
 		<div id='main-text'>
 			<img class=logo src='/LOGO_VYATGU_VECTOR.svg'>
 			<h1>Расписание</h1>
-
+			<h1 id='clock'></h1>
 		</div>
 		<div id=main-cont>
 			<form method='post'>
@@ -43,10 +43,11 @@
 				<input type="button" value="Текущая неделя" onclick="swap_to_current_week()">
 				<input type="button" value="Следующая неделя" onclick="swap_to_next_week()">
 				<div class='btn-group-right'>
-					<a class = btn href="teachers/">Для преподавателей</a>
+					<a class=btn href="teachers/">Для преподавателей</a>
 					<!-- <button id='csv-save' class='btn'>CSV File</button> -->
 					<a href="#" id="test" onClick="javascript:fnExcelReport();" class='btn'>Excel</a>
 				</div>
+				<input id='btn-today' type='button' value="Сегодня">
 			</form> <!-- загрузка групп из БД -->
 		</div>
 	</div>
@@ -60,14 +61,13 @@
 <script src='../../jquery.js'></script>
 <!-- <script src = 'script_add_rasp.js'></script> -->
 <script>
-
 	function getCookie(name) {
 		let matches = document.cookie.match(new RegExp(
 			"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
 		));
 		return matches ? decodeURIComponent(matches[1]) : undefined;
 	}
-	
+
 	let last_group = getCookie('last_group'); // id последней выбраной группы
 	if (last_group)
 		$('#name_of_group').val(last_group);
@@ -180,6 +180,7 @@
 				console.log(response);
 			}
 		});
+		$(time).addClass('check-time');
 		_class.appendChild(time);
 		_class.appendChild(name);
 		_class.appendChild(type);
@@ -239,6 +240,24 @@
 			}
 		});
 		day.appendChild(trday);
+
+		let yesterday = moment().add(-1, 'days').format('DD.MM.YYYY');
+		let today = moment().format('DD.MM.YYYY');
+		let tommorow = moment().add(1, 'days').format('DD.MM.YYYY');
+		let current_day = moment(start_week).add(number - 1, 'days').format('DD.MM.YYYY');
+		if (moment(current_day).isBefore(today)) {
+			// $(day).css('background-color','rgb(128 128 128 / 50%)')
+		}
+		if (current_day == yesterday) {
+			$(day).addClass('yesterday');
+		}
+		if (current_day == today) {
+			$(day).addClass('today');
+			$(day).css('background-color', 'rgb(0 255 103 / 50%)');
+		}
+		if (current_day == tommorow) {
+			$(day).addClass('tommorow');
+		}
 		return day;
 	}
 
@@ -250,11 +269,13 @@
 
 	function swap_to_current_week() {
 		$('#week-select').val(moment().year() + '-W' + current_week);
+		$('#btn-today').show()
 		tableCreate();
 	}
 
 	function swap_to_next_week() {
 		$('#week-select').val(moment().year() + '-W' + next_week);
+		$('#btn-today').hide()
 		tableCreate();
 	}
 
@@ -304,5 +325,34 @@
 		}
 	}
 
-	
+	function clock() {
+		$('#clock').text(moment().format('HH:mm:ss'));
+		check_time();
+	}
+	let mass_check_time = $('.today .check-time');
+
+	// console.log(moment('07.06.2021 08:00:00', 'DD-MM-YYYY hh:mm:ss').isBefore(moment()));
+	function check_time() {
+		$.each(mass_check_time, function(indexInArray, valueOfElement) {
+			console.log(valueOfElement);
+		});
+	}
+
+	// $.each($('tr'), function (indexInArray, valueOfElement) { 
+	// 	if ($(this).hasClass('today')){
+	// 		return true;
+	// 	}
+	// 	else{
+	// 		$(this).css('background-color','rgb(128 128 128 / 50%)')
+	// 	}
+	// });
+
+	clock();
+	setInterval(clock, 1000);
+
+	$("#btn-today").click(function() { // ID откуда кливаем
+		$('html, body').animate({
+			scrollTop: $(".today").offset().top // класс объекта к которому приезжаем
+		}, 1000); // Скорость прокрутки
+	});
 </script>
