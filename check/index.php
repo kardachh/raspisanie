@@ -175,7 +175,7 @@
 			},
 			error: function(response) {
 				$('table').remove();
-				$('body').html('Ошибка получения расписания');
+				// $('body').html('Ошибка получения расписания');
 				console.log(response.responseText);
 				console.log(response);
 			}
@@ -245,18 +245,14 @@
 		let today = moment().format('DD.MM.YYYY');
 		let tommorow = moment().add(1, 'days').format('DD.MM.YYYY');
 		let current_day = moment(start_week).add(number - 1, 'days').format('DD.MM.YYYY');
+
 		if (moment(current_day).isBefore(today)) {
-			// $(day).css('background-color','rgb(128 128 128 / 50%)')
+			$(day).css('background-color','rgb(128 128 128 / 50%)')
 		}
-		if (current_day == yesterday) {
-			$(day).addClass('yesterday');
-		}
+
 		if (current_day == today) {
 			$(day).addClass('today');
 			$(day).css('background-color', 'rgb(0 255 103 / 50%)');
-		}
-		if (current_day == tommorow) {
-			$(day).addClass('tommorow');
 		}
 		return day;
 	}
@@ -325,27 +321,14 @@
 		}
 	}
 
+	// console.log(moment('07.06.2021 08:00:00', 'DD-MM-YYYY hh:mm:ss').isBefore(moment()));
+
 	function clock() {
 		$('#clock').text(moment().format('HH:mm:ss'));
-		check_time();
-	}
-	let mass_check_time = $('.today .check-time');
-
-	// console.log(moment('07.06.2021 08:00:00', 'DD-MM-YYYY hh:mm:ss').isBefore(moment()));
-	function check_time() {
-		$.each(mass_check_time, function(indexInArray, valueOfElement) {
-			console.log(valueOfElement);
+		$.each($('.check-time'), function (indexInArray, valueOfElement) { 
+			
 		});
 	}
-
-	// $.each($('tr'), function (indexInArray, valueOfElement) { 
-	// 	if ($(this).hasClass('today')){
-	// 		return true;
-	// 	}
-	// 	else{
-	// 		$(this).css('background-color','rgb(128 128 128 / 50%)')
-	// 	}
-	// });
 
 	clock();
 	setInterval(clock, 1000);
@@ -355,4 +338,5 @@
 			scrollTop: $(".today").offset().top // класс объекта к которому приезжаем
 		}, 1000); // Скорость прокрутки
 	});
+	
 </script>

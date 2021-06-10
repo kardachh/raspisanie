@@ -432,8 +432,10 @@ h1 {
   }
 
   .btn-back .btn {
-    width: 10%;
+    width: -moz-fit-content;
+    width: fit-content;
     font-size: small;
+
     text-align: center;
     position: absolute;
   }
@@ -464,5 +466,9 @@ h1 {
   .col {
     width: auto;
     display: block;
+  }
+
+  input[type="submit"], input[type="button"]{
+    margin: 3px 0;
   }
 }
