@@ -1,6 +1,6 @@
 <?php
-    $host = 'eu-cdbr-west-01.cleardb.com'; // адрес сервера 
-    $database = 'heroku_82921d391574df5'; // имя базы данных
-    $user = 'bb83ec55e6cef3'; // имя пользователя
-    $password = 'f9c48c66'; // пароль
+    $host = 'n2o93bb1bwmn0zle.chr7pe7iynqr.eu-west-1.rds.amazonaws.com'; // адрес сервера 
+    $database = 'znns1dyvpol390qb'; // имя базы данных
+    $user = 'oi8b6d8oyf9g6mwa'; // имя пользователя
+    $password = 'm5na3tuah0mcur57'; // пароль
 ?>
