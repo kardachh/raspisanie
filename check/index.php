@@ -25,7 +25,7 @@
 							or die("Ошибка " . mysqli_error($link));
 
 						// выполняем операции с базой данных
-						$query = "SELECT * FROM Groups ORDER BY Name";
+						$query = "SELECT * FROM Groups";
 						$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
 						if ($result) {
 							while ($row = mysqli_fetch_array($result)) {
